@@ -1,268 +1,312 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MessageSquare, ChevronRight, User, BookOpen, Scale, Award, Globe, PenTool, Layout, Menu, X, Youtube, FileText, ShieldCheck } from 'lucide-react';
+import { FileText, Youtube, Scale, BookOpen, Mail, Phone, Linkedin, ChevronRight } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('inicio');
 
-  // Paleta de colores institucional
   const colors = {
-    bg: '#000000',
-    primary: '#270605', // Guinda institucional
-    accent: '#7f6000',  // Dorado
-    text: '#ffffff',
-    card: '#0a0a0a'
+    bg: '#0f172a',          // Azul-gris oscuro jovial y moderno
+    primary: '#1e293b',     // Paneles
+    accent: '#d4a017',      // Dorado c√°lido
+    neon: '#a5b4fc',        // Ne√≥n sutil para hover
+    text: '#e2e8f0',        // Gris claro legible
+    textDark: '#94a3b8',
   };
 
-  const NavItem = ({ id, label }) => (
-    <button
-      onClick={() => { setActiveTab(id); setMenuOpen(false); }}
-      className={`px-4 py-2 transition-all duration-300 text-sm font-bold tracking-widest uppercase ${
-        activeTab === id ? 'text-[#7f6000] border-b-2 border-[#7f6000]' : 'text-gray-400 hover:text-white'
-      }`}
-    >
-      {label}
-    </button>
-  );
-
   return (
-    <div className="min-h-screen bg-black text-white font-serif selection:bg-[#7f6000] selection:text-black">
-      {/* Estilos para el justificado y tipografÌa */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
-        
-        .font-lora { font-family: 'Lora', serif; }
-        .font-merri { font-family: 'Merriweather', serif; }
-        
-        .text-justify-custom {
-          text-align: justify;
-          text-justify: inter-word;
-        }
-
-        /* Ajuste para mÛviles: evitar que el texto se rompa feo */
-        @media (max-width: 640px) {
-          .text-justify-custom {
-            text-align: left;
-          }
-        }
-      `}</style>
-
-      {/* NavegaciÛn Superior */}
-      <nav className="sticky top-0 z-50 bg-black/95 border-b border-[#270605] backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-          <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-[0.2em] font-lora">EDUARDO MONTALVO REYES</span>
-            <span className="text-[10px] tracking-[0.4em] text-[#7f6000] uppercase">Abogado & Catedr·tico</span>
+    <div className="min-h-screen" style={{ backgroundColor: colors.bg, color: colors.text }}>
+      {/* Navegaci√≥n */}
+      <nav className="sticky top-0 z-50 backdrop-blur-lg border-b border-[#334155]" style={{ backgroundColor: 'rgba(15, 23, 42, 0.85)' }}>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold tracking-wider" style={{ color: colors.accent, fontFamily: "'Lora', serif" }}>
+              EDUARDO MONTALVO REYES
+            </h1>
+            <p className="text-sm uppercase tracking-widest opacity-80">Abogado & Catedr√°tico</p>
           </div>
 
-          {/* Men˙ Escritorio */}
-          <div className="hidden lg:flex items-center space-x-2">
-            <NavItem id="home" label="Inicio" />
-            <NavItem id="filosofia" label="FilosofÌa" />
-            <NavItem id="academico" label="InvasiÛn AcadÈmica" />
-            <NavItem id="tribunal" label="Tribunal" />
-            <NavItem id="contacto" label="Contacto" />
+          <div className="hidden md:flex space-x-8">
+            {['inicio', 'filosofia', 'invasion', 'tribunal', 'bachillerato', 'conoceme', 'contacto'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`uppercase text-sm tracking-widest font-medium transition-all ${
+                  activeTab === tab ? 'text-[#d4a017] border-b-2 border-[#d4a017]' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {tab === 'inicio' ? 'Inicio' : tab === 'filosofia' ? 'Filosof√≠a' : tab === 'invasion' ? 'Invasi√≥n Acad√©mica' : tab === 'tribunal' ? 'Tribunal' : tab === 'bachillerato' ? 'Bachillerato' : tab === 'conoceme' ? 'Con√≥ceme' : 'Contacto'}
+              </button>
+            ))}
           </div>
-
-          {/* BotÛn MÛvil */}
-          <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
         </div>
       </nav>
 
-      {/* Men˙ Lateral MÛvil */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center space-y-8 animate-in fade-in zoom-in duration-300">
-          <NavItem id="home" label="Inicio" />
-          <NavItem id="filosofia" label="FilosofÌa" />
-          <NavItem id="academico" label="Academia" />
-          <NavItem id="tribunal" label="Tribunal" />
-          <NavItem id="contacto" label="Contacto" />
-          <button onClick={() => setMenuOpen(false)} className="absolute top-6 right-6 text-gray-500">
-            <X size={32} />
-          </button>
-        </div>
-      )}
+      {/* Contenido principal */}
+      <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+        {/* Inicio */}
+        {activeTab === 'inicio' && (
+          <div className="space-y-16 text-center">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight" style={{ fontFamily: "'Lora', serif", color: '#ffffff' }}>
+              FORJANDO HOY EL FUTURO DEL MA√ëANA
+            </h2>
+            <p className="text-xl md:text-2xl italic max-w-4xl mx-auto leading-relaxed" style={{ color: colors.textDark }}>
+              Convencido de que la tecnolog√≠a y la inteligencia artificial son herramientas poderosas, ense√±o su uso √©tico y responsable: siempre como apoyo para perfeccionar el trabajo humano, nunca como reemplazo de nuestra esencia.
+            </p>
 
-      {/* Contenido Principal */}
-      <main className="max-w-5xl mx-auto px-6 py-12 md:py-20 font-merri">
-        
-        {/* SECCI”N INICIO */}
-        {activeTab === 'home' && (
-          <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="relative group overflow-hidden rounded-xl border border-[#270605] shadow-2xl">
-              <div className="aspect-video w-full bg-neutral-900 flex items-center justify-center">
-                {/* Fallback si el iframe es bloqueado o no carga */}
-                <iframe 
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/Gw0FgPUnEDQ" 
-                  title="Video Eduardo Montalvo"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-
-            <div className="max-w-3xl mx-auto text-center space-y-8">
-              <h1 className="text-4xl md:text-6xl font-lora italic font-medium leading-tight">
-                "Forjando hoy el <span className="text-[#7f6000]">futuro</span> del maÒana"
-              </h1>
-              <p className="text-lg md:text-xl text-justify-custom text-gray-300 leading-relaxed italic">
-                Convencido de usar la tecnologÌa y la Inteligencia Artificial de manera consciente. Por ello, me baso en enseÒar su uso de una manera que se entienda que debe emplearse Èticamente, siempre como un apoyo extra de perfecciÛn y jam·s como un reemplazo de la esencia humana.
-              </p>
-              <div className="flex justify-center gap-4 pt-4">
-                <button onClick={() => setActiveTab('academico')} className="px-8 py-3 bg-[#7f6000] text-black font-bold uppercase text-xs tracking-widest rounded-sm hover:bg-white transition-all">
-                  Ver Proyectos
-                </button>
-                <button onClick={() => setActiveTab('contacto')} className="px-8 py-3 border border-white text-white font-bold uppercase text-xs tracking-widest rounded-sm hover:bg-white hover:text-black transition-all">
-                  Contacto
-                </button>
-              </div>
+            {/* Video principal */}
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border-2 border-[#d4a017]/30 max-w-5xl mx-auto">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/Gw0FgPUnEDQ"
+                title="Presentaci√≥n Eduardo Montalvo Reyes"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
         )}
 
-        {/* SECCI”N FILOSOFÕA */}
+        {/* Filosof√≠a */}
         {activeTab === 'filosofia' && (
-          <div className="max-w-3xl mx-auto space-y-12 animate-in fade-in duration-500">
-            <div className="text-center">
-              <h2 className="text-3xl font-lora font-bold uppercase tracking-[0.3em] text-[#7f6000]">Manifiesto</h2>
-              <div className="h-1 w-20 bg-[#270605] mx-auto mt-4"></div>
-            </div>
-            
-            <div className="space-y-8 text-justify-custom text-gray-200 text-lg leading-loose">
-              <p>
-                No concibo la docencia como un acto de mera transmisiÛn de datos, sino como un ejercicio de responsabilidad humana y jurÌdica. Mi compromiso nace en las planeaciones acadÈmicas buscando la perfecciÛn y se materializa en el aula, donde busco romper el esquema de la educaciÛn frÌa para mostrar la realidad tal cual es: compleja, pero transformable.
+          <div className="max-w-4xl mx-auto space-y-12">
+            <h2 className="text-4xl font-bold text-center tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+              MANIFIESTO
+            </h2>
+            <div className="prose prose-lg max-w-none text-gray-300 leading-relaxed space-y-6">
+              <p className="italic">
+                No concibo la docencia como un acto de mera transmisi√≥n de datos, sino como un ejercicio de responsabilidad humana y jur√≠dica. Mi compromiso nace en las planeaciones acad√©micas buscando la perfecci√≥n y se materializa en el aula, donde busco romper el esquema de la educaci√≥n fr√≠a para mostrar la realidad tal cual es: compleja, pero transformable.
               </p>
-              <blockquote className="border-l-4 border-[#7f6000] pl-8 py-4 my-10 bg-[#270605]/10 font-lora italic text-xl text-white">
-                "DiseÒo estructuras que obligan al alumno a enfrentarse a la pr·ctica real, porque el error en el aula es una lecciÛn, pero el error en la vida tiene un peso que marca."
+              <blockquote className="border-l-4 border-[#d4a017] pl-6 py-4 my-8 bg-[#1e293b]/50 italic text-xl">
+                "Dise√±o estructuras que obligan al alumno a enfrentarse a la pr√°ctica real, porque el error en el aula es una lecci√≥n, pero el error en la vida tiene un peso que marca."
               </blockquote>
               <p>
-                EnseÒo desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia tÈcnica son la ˙nica vÌa para formar expertos en la ley, pero sobre todo, Ìntegros en su humanidad.
+                Ense√±o desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia t√©cnica son la √∫nica v√≠a para formar expertos en la ley, pero sobre todo, √≠ntegros en su humanidad.
               </p>
             </div>
           </div>
         )}
 
-        {/* SECCI”N INVASI”N ACAD…MICA */}
-        {activeTab === 'academico' && (
-          <div className="space-y-16 animate-in fade-in duration-500">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl font-lora font-bold uppercase tracking-widest text-[#7f6000]">InvasiÛn de Clases</h2>
-              <p className="max-w-2xl mx-auto text-gray-400 italic">Optimizando los programas oficiales mediante la perfecciÛn tÈcnica y la praxis jurÌdica.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-8 bg-[#0a0a0a] border border-[#270605] space-y-4 hover:border-[#7f6000] transition-colors group">
-                <FileText className="text-[#7f6000] group-hover:scale-110 transition-transform" size={40} />
-                <h3 className="text-xl font-bold font-lora uppercase tracking-tight">Temarios Tem·ticos</h3>
-                <p className="text-sm text-justify-custom text-gray-400">
-                  GarantÌa de enseÒanza mediante un desglose semanal que vincula la praxis jurÌdica real con la teorÌa acadÈmica, integrando temas de vanguardia y control de calidad.
-                </p>
-                <div className="pt-4 border-t border-white/5">
-                  <a href="https://drive.google.com/file/d/1ArOiedBdJgJ7VPc_tCDGVY9SfLJg669e/view" target="_blank" className="text-xs font-bold uppercase text-[#7f6000] hover:text-white flex items-center gap-2">
-                    Explorar Documento <ChevronRight size={14} />
-                  </a>
-                </div>
-              </div>
-
-              <div className="p-8 bg-[#0a0a0a] border border-[#270605] space-y-4 hover:border-[#7f6000] transition-colors group">
-                <Youtube className="text-[#7f6000] group-hover:scale-110 transition-transform" size={40} />
-                <h3 className="text-xl font-bold font-lora uppercase tracking-tight">Guiones de C·tedra</h3>
-                <p className="text-sm text-justify-custom text-gray-400">
-                  El Derecho concebido como una obra escÈnica. Planeaciones con ritmo narrativo, clÌmax de aprendizaje y enfoque en la inteligencia artÌstica del jurista.
-                </p>
-                <div className="pt-4 border-t border-white/5">
-                  <a href="https://drive.google.com/file/d/17NkMEV-fXOulCliPIxA2hnIn9YvdGw5b/view" target="_blank" className="text-xs font-bold uppercase text-[#7f6000] hover:text-white flex items-center gap-2">
-                    Ver Guiones <ChevronRight size={14} />
-                  </a>
-                </div>
-              </div>
-
-              <div className="p-8 bg-[#0a0a0a] border border-[#270605] space-y-4 hover:border-[#7f6000] transition-colors group md:col-span-2">
-                <ShieldCheck className="text-[#7f6000] group-hover:scale-110 transition-transform" size={40} />
-                <h3 className="text-xl font-bold font-lora uppercase tracking-tight">ActualizaciÛn de Contenidos</h3>
-                <p className="text-sm text-justify-custom text-gray-400">
-                  ReestructuraciÛn de programas de bachillerato y licenciatura (…tica, Historia, Derecho) para incluir temas omitidos por el est·ndar tradicional, como el procedimiento agrario o la seguridad social.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* SECCI”N TRIBUNAL */}
-        {activeTab === 'tribunal' && (
-          <div className="space-y-12 animate-in fade-in duration-500">
-            <div className="bg-[#270605]/10 border border-[#270605] p-12 text-center rounded-sm">
-              <Scale size={64} className="mx-auto text-[#7f6000] mb-6" />
-              <h2 className="text-3xl font-lora font-bold uppercase mb-6">ClÌnica Procesal: El Tribunal Escolar</h2>
-              <p className="max-w-3xl mx-auto text-justify-custom text-gray-300 leading-relaxed mb-8">
-                Un ecosistema pedagÛgico diseÒado para que el alumno de Licenciatura en Derecho no solo estudie el proceso, sino que lo viva. Mediante expedientes reales, simulaciones de audiencias y la creaciÛn de un CÛdigo Normativo propio, transformamos el aula en un despacho jurÌdico de alto nivel.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-bold tracking-widest uppercase">
-                <div className="p-4 border border-[#7f6000]/30">Juicios Orales</div>
-                <div className="p-4 border border-[#7f6000]/30">Derecho de Amparo</div>
-                <div className="p-4 border border-[#7f6000]/30">Pr·ctica Forense</div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* SECCI”N CONTACTO */}
-        {activeTab === 'contacto' && (
-          <div className="max-w-2xl mx-auto space-y-12 animate-in zoom-in duration-300">
+        {/* Invasi√≥n Acad√©mica */}
+        {activeTab === 'invasion' && (
+          <div className="space-y-16">
             <div className="text-center">
-              <h2 className="text-3xl font-lora font-bold uppercase tracking-widest">Contacto Directo</h2>
-              <p className="text-gray-500 mt-2 italic">AtenciÛn profesional y acadÈmica.</p>
+              <h2 className="text-4xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+                INVASI√ìN ACAD√âMICA
+              </h2>
+              <p className="text-xl italic text-gray-400 mt-4">
+                Mis innovaciones nunca van contra el sistema, sino que lo perfeccionan. No soy rebelde; soy perfeccionista que cubre los huecos que la educaci√≥n tradicional deja abiertos.
+              </p>
             </div>
 
-            <div className="space-y-4">
-              <div className="group p-6 bg-[#0a0a0a] border border-[#270605] flex items-center justify-between hover:border-[#7f6000] transition-all">
-                <div className="flex items-center gap-6">
-                  <div className="p-3 bg-[#270605]/50 text-[#7f6000]">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase text-gray-500 font-bold tracking-tighter">Correo ElectrÛnico</p>
-                    <p className="text-lg">lic.montalvo.legal@gmail.com</p>
-                  </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Tarjeta 1 */}
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all group">
+                <div className="flex items-center gap-4 mb-6">
+                  <FileText className="text-[#d4a017] group-hover:scale-110 transition-transform" size={48} />
+                  <h3 className="text-2xl font-bold">Actualizaci√≥n de Temario</h3>
                 </div>
+                <iframe src="https://drive.google.com/file/d/1Em4Qvq6wvDRyTTaEGrLLxKyCpN0iVav0/preview" className="w-full h-64 rounded-lg" allow="autoplay"></iframe>
+                <a href="https://drive.google.com/file/d/1Em4Qvq6wvDRyTTaEGrLLxKyCpN0iVav0/view" target="_blank" className="mt-4 inline-block text-[#d4a017] hover:text-white font-bold">
+                  Ver documento completo ‚Üí
+                </a>
               </div>
 
-              <div className="group p-6 bg-[#0a0a0a] border border-[#270605] flex items-center justify-between hover:border-[#7f6000] transition-all">
-                <div className="flex items-center gap-6">
-                  <div className="p-3 bg-[#270605]/50 text-[#7f6000]">
-                    <MessageSquare size={24} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase text-gray-500 font-bold tracking-tighter">WhatsApp / MÛvil</p>
-                    <p className="text-lg">55 3467 6149</p>
-                  </div>
+              {/* Tarjeta 2 */}
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all group">
+                <div className="flex items-center gap-4 mb-6">
+                  <FileText className="text-[#d4a017] group-hover:scale-110 transition-transform" size={48} />
+                  <h3 className="text-2xl font-bold">Temarios Tem√°ticos</h3>
                 </div>
+                <iframe src="https://drive.google.com/file/d/1ArOiedBdJgJ7VPc_tCDGVY9SfLJg669e/preview" className="w-full h-64 rounded-lg" allow="autoplay"></iframe>
+                <a href="https://drive.google.com/file/d/1ArOiedBdJgJ7VPc_tCDGVY9SfLJg669e/view" target="_blank" className="mt-4 inline-block text-[#d4a017] hover:text-white font-bold">
+                  Ver documento completo ‚Üí
+                </a>
+              </div>
+
+              {/* Tarjeta 3 */}
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all group">
+                <div className="flex items-center gap-4 mb-6">
+                  <Youtube className="text-[#d4a017] group-hover:scale-110 transition-transform" size={48} />
+                  <h3 className="text-2xl font-bold">Guiones de C√°tedra</h3>
+                </div>
+                <iframe src="https://drive.google.com/file/d/17NkMEV-fXOulCliPIxA2hnIn9YvdGw5b/preview" className="w-full h-64 rounded-lg" allow="autoplay"></iframe>
+                <a href="https://drive.google.com/file/d/17NkMEV-fXOulCliPIxA2hnIn9YvdGw5b/view" target="_blank" className="mt-4 inline-block text-[#d4a017] hover:text-white font-bold">
+                  Ver documento completo ‚Üí
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tribunal Escolar */}
+        {activeTab === 'tribunal' && (
+          <div className="space-y-16">
+            <div className="text-center">
+              <h2 className="text-4xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+                TRIBUNAL ESCOLAR
+              </h2>
+              <p className="text-xl italic text-gray-400 mt-4 max-w-3xl mx-auto">
+                Transformo el aula en un despacho jur√≠dico real para que mis alumnos no solo estudien el proceso, sino que lo vivan.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Juicio Pr√°ctico */}
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all">
+                <h3 className="text-2xl font-bold mb-4">Juicio Pr√°ctico</h3>
+                <p className="text-gray-300 mb-4">
+                  Mi intenci√≥n es que practiques el procedimiento completo de un juicio: desde el escrito inicial hasta la sentencia, pasando por todos los tr√°mites. Con mi gu√≠a resolver√°s dudas reales de litigantes.
+                </p>
+                {/* Aqu√≠ embed video */}
+              </div>
+
+              {/* Juicio de Amparo */}
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all">
+                <h3 className="text-2xl font-bold mb-4">Juicio de Amparo</h3>
+                <p className="text-gray-300 mb-4">
+                  En M√©xico y el mundo los derechos humanos son la rienda actual. Ense√±ar a agotar el principio de definitividad en el aula asegura que mis alumnos dominen este procedimiento constitucional clave.
+                </p>
+                {/* Video */}
+              </div>
+
+              {/* Secretariado */}
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all">
+                <h3 className="text-2xl font-bold mb-4">Secretariado</h3>
+                <p className="text-gray-300 mb-4">
+                  Estos procedimientos son de mi autor√≠a y est√°n dise√±ados exclusivamente para el Tribunal Escolar. No violentan derechos de terceros, pero se acercan lo m√°s posible a la realidad procesal.
+                </p>
+                {/* Video */}
+              </div>
+
+              {/* Creaci√≥n de herramienta pedag√≥gica */}
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all">
+                <h3 className="text-2xl font-bold mb-4">Creaci√≥n de Herramienta Pedag√≥gica</h3>
+                <p className="text-gray-300 mb-4">
+                  El alumno crea su propio C√≥digo Normativo estudiantil, que funciona como reglamento de clase y le ense√±a a fundamentar procesalmente cada promoci√≥n, tarea o examen como si fuera un juzgado real.
+                </p>
+                {/* Video */}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Bachillerato */}
+        {activeTab === 'bachillerato' && (
+          <div className="space-y-16">
+            <div className="text-center">
+              <h2 className="text-4xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+                BACHILLERATO
+              </h2>
+              <p className="text-xl italic text-gray-400 mt-4 max-w-3xl mx-auto">
+                Mi pasi√≥n por este nivel me ha permitido acompa√±ar a los alumnos en su formaci√≥n integral, adapt√°ndome a cada materia con el mismo compromiso.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all">
+                <h3 className="text-2xl font-bold mb-4">√âtica y Valores</h3>
+                <p className="text-gray-300">
+                  Aqu√≠ forjo √©tica y buena fe pr√°ctica. Ayudo a los alumnos a tomar decisiones correctas en el momento justo, redescubriendo su propia realidad moral.
+                </p>
+                {/* Video */}
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all">
+                <h3 className="text-2xl font-bold mb-4">Historia de M√©xico y el Mundo</h3>
+                <p className="text-gray-300">
+                  Ense√±o a ver la historia como algo conectado: M√©xico en el mundo y el mundo en M√©xico. Genero identidad y comprensi√≥n global en cada alumno.
+                </p>
+                {/* Video */}
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155] hover:border-[#d4a017] transition-all">
+                <h3 className="text-2xl font-bold mb-4">Taller de Lectura y Redacci√≥n</h3>
+                <p className="text-gray-300">
+                  Despierto la importancia de la buena ortograf√≠a y comunicaci√≥n efectiva. Capacito para generar escritos profesionales que servir√°n toda la vida.
+                </p>
+                {/* Video */}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Con√≥ceme */}
+        {activeTab === 'conoceme' && (
+          <div className="max-w-4xl mx-auto space-y-12">
+            <h2 className="text-4xl font-bold text-center tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+              CON√ìCEME
+            </h2>
+
+            <div className="prose prose-lg max-w-none text-gray-300 leading-relaxed space-y-8">
+              <h3 className="text-2xl font-bold">Visi√≥n y Misi√≥n</h3>
+              <p className="italic">
+                Creo en una educaci√≥n que no solo transmite conocimiento, sino que forma personas √≠ntegras y competentes. Mi visi√≥n es que cada alumno descubra su potencial y lo ponga al servicio de la justicia y la sociedad.
+              </p>
+
+              <h3 className="text-2xl font-bold">Formaci√≥n Acad√©mica</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Licenciado en Derecho por la UNAM</li>
+                <li>Maestrante en Derecho por la UNAM</li>
+                <li>Diplomado en Derecho Procesal Laboral por la UNAM</li>
+                <li>Experiencia docente de m√°s de un a√±o en nivel Licenciatura y Bachillerato</li>
+              </ul>
+
+              <h3 className="text-2xl font-bold">Filosof√≠a docente</h3>
+              <p className="italic">
+                Mi m√°s grande carta de recomendaci√≥n son las cartas de agradecimiento de mis alumnos o clientes. Me hacen ver que el trabajo realizado fue satisfactorio y humano. Soy consciente de los errores del sistema educativo actual y busco corregirlos con tecnolog√≠a bien usada: √©tica, responsable y siempre como apoyo, nunca como reemplazo del contacto humano.
+              </p>
+              <p>
+                Tengo la capacidad de adaptarme a cualquier materia que se me asigne. No soy un tod√≥logo; soy un profesional preparado para apoyar donde se me necesite, porque puedo hacerlo con seriedad y pasi√≥n.
+              </p>
+
+              {/* Video */}
+              <div className="aspect-video rounded-xl overflow-hidden shadow-2xl">
+                <iframe src="URL-DEL-VIDEO-CONOCEME" width="100%" height="100%" allowFullScreen></iframe>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Contacto */}
+        {activeTab === 'contacto' && (
+          <div className="max-w-3xl mx-auto space-y-12 text-center">
+            <h2 className="text-4xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+              CONTACTO DIRECTO
+            </h2>
+            <p className="text-xl italic text-gray-400">
+              Atenci√≥n profesional y acad√©mica. Estoy a su disposici√≥n.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155]">
+                <Mail className="mx-auto text-[#d4a017] mb-4" size={48} />
+                <p className="text-lg font-bold">Correo electr√≥nico</p>
+                <a href="mailto:lic.montalvo.legal@gmail.com" className="text-[#d4a017] hover:text-white">
+                  lic.montalvo.legal@gmail.com
+                </a>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-xl border border-[#334155]">
+                <Phone className="mx-auto text-[#d4a017] mb-4" size={48} />
+                <p className="text-lg font-bold">WhatsApp / M√≥vil</p>
+                <a href="https://wa.me/525534676149" target="_blank" className="text-[#d4a017] hover:text-white">
+                  55 3467 6149
+                </a>
               </div>
             </div>
 
-            <div className="text-center text-sm text-gray-600 italic">
-              "Mi m·s grande carta de recomendaciÛn son las cartas de agradecimiento de mis alumnos o clientes."
-            </div>
+            <p className="italic text-gray-400 text-lg">
+              "Mi m√°s grande carta de recomendaci√≥n son las cartas de agradecimiento de mis alumnos o clientes."
+            </p>
           </div>
         )}
       </main>
 
-      {/* Footer Final */}
-      <footer className="mt-20 border-t border-[#270605] py-12 bg-black">
-        <div className="max-w-5xl mx-auto px-6 text-center space-y-6">
-          <div className="flex justify-center space-x-6">
-            <span className="h-px w-12 bg-[#7f6000] self-center"></span>
-            <span className="text-xs uppercase tracking-[0.5em] text-gray-500">Iustitia et Educatio</span>
-            <span className="h-px w-12 bg-[#7f6000] self-center"></span>
-          </div>
-          <p className="text-[11px] text-gray-700 uppercase tracking-widest">
-            © {new Date().getFullYear()} Lic. Eduardo Montalvo Reyes. Prohibida la reproducciÛn total o parcial sin autorizaciÛn.
-          </p>
-        </div>
+      {/* Footer */}
+      <footer className="border-t border-[#334155] py-12 bg-[#0f172a] text-center text-gray-400">
+        <p>Lic. Eduardo Montalvo Reyes ‚Ä¢ Abogado ‚Ä¢ Catedr√°tico</p>
+        <p className="text-sm mt-2">Todos los derechos reservados ¬© 2026</p>
       </footer>
     </div>
   );
