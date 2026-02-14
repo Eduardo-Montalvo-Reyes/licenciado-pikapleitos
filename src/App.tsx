@@ -73,14 +73,14 @@ export default function App() {
         {/* Inicio */}
         {activeTab === 'inicio' && (
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Izquierda: Video con pie */}
+            {/* Izquierda: Video con thumbnail visible (sin autoplay) */}
             <div>
               <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
                 <iframe
                   className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-2 border-[#d4a017]/50"
-                  src="https://www.youtube.com/embed/MH13zjcQKC4?autoplay=1&mute=1&playsinline=1&loop=1"
+                  src="https://www.youtube.com/embed/MH13zjcQKC4"
                   title="Presentación Eduardo Montalvo Reyes"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
               </div>
@@ -115,66 +115,55 @@ export default function App() {
               Mi Filosofía
             </h2>
 
-            {/* Video pequeño vertical como acompañante */}
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              <div className="md:order-2">
-                <div className="relative w-full max-w-sm mx-auto md:mx-0 pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
-                  <iframe
-                    className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-4 border-[#d4a017]/50"
-                    src="https://www.youtube.com/embed/8vK125i-ctk?autoplay=1&mute=1&playsinline=1"
-                    title="Filosofía Eduardo Montalvo Reyes"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+            {/* Video pequeño arriba del texto */}
+            <div className="mx-auto max-w-sm">
+              <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
+                <iframe
+                  className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-4 border-[#d4a017]/50"
+                  src="https://www.youtube.com/embed/8vK125i-ctk"
+                  title="Filosofía Eduardo Montalvo Reyes"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
+            </div>
 
-              {/* Texto del PDF */}
-              <div className="md:order-1 prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-6 bg-[#1e293b] p-10 rounded-2xl border border-[#334155]">
-                <p className="text-center font-semibold text-xl mb-8">
-                  A la atención del Comité de Selección / Dirección Académica [Nombre de la Institución]<br />
-                  PRESENTE.
-                </p>
+            {/* Texto limpio, sin encabezado formal, pensamiento en cursiva */}
+            <div className="prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-6 bg-[#1e293b] p-10 rounded-2xl border border-[#334155]">
+              <p>
+                Soy Licenciado en Derecho por la UNAM y maestrante en Derecho Laboral, ejerciendo activamente como abogado litigante independiente. Esta dualidad me permite trasladar la realidad de los juzgados y la praxis jurídica directamente al aula, fomentando en los estudiantes un pensamiento crítico, ético y, sobre todo, práctico.
+              </p>
 
-                <p>
-                  Por medio de la presente, me permito someter a su atenta consideración mi perfil profesional para integrarme al cuerpo docente de su prestigiosa institución en las áreas de Derecho o Ciencias Sociales.
-                </p>
+              <p>
+                A lo largo de mi trayectoria, me he especializado en el diseño de planes de estudio personalizados mediante herramientas de mi autoría: los "Guiones de Cátedra" y "Temarios Temáticos". Estos instrumentos garantizan un control riguroso de los contenidos, una administración del tiempo optimizada y una dinámica grupal de excelencia. Asimismo, soy un convencido de que la Inteligencia Artificial debe integrarse a la educación como un auxiliar estratégico bajo principios de ética profesional.
+              </p>
 
-                <p>
-                  Soy Licenciado en Derecho por la UNAM y maestrante en Derecho Laboral, ejerciendo activamente como abogado litigante independiente. Esta dualidad me permite trasladar la realidad de los juzgados y la praxis jurídica directamente al aula, fomentando en los estudiantes un pensamiento crítico, ético y, sobre todo, práctico.
-                </p>
+              <p className="italic">
+                Mi objetivo es aportar la "nueva inercia" que la docencia exige: rigor técnico-teórico con un enfoque humano. Mi metodología es pragmática; implemento proyectos de unidad donde el alumno someta la teoría a la prueba de la realidad, culminando en un Proyecto Integrador Final que asegura la comprensión total del programa aplicado al entorno diario.
+              </p>
 
-                <p>
-                  A lo largo de mi trayectoria, me he especializado en el diseño de planes de estudio personalizados mediante herramientas de mi autoría: los "Guiones de Cátedra" y "Temarios Temáticos". Estos instrumentos garantizan un control riguroso de los contenidos, una administración del tiempo optimizada y una dinámica grupal de excelencia. Asimismo, soy un convencido de que la Inteligencia Artificial debe integrarse a la educación como un auxiliar estratégico bajo principios de ética profesional.
-                </p>
+              <blockquote className="border-l-4 border-[#d4a017] pl-8 py-6 my-10 bg-[#0f172a]/50 italic text-2xl">
+                "No concibo la docencia como un acto de mera transmisión de datos, sino como un ejercicio de responsabilidad humana y jurídica. Mi compromiso nace en las planeaciones académicas buscando la perfección y se materializa en el aula, donde busco romper el esquema de la educación fría para mostrar la realidad tal cual es: cruel y compleja, pero transformable. Mi metodología es el pragmatismo absoluto; diseño estructuras que obligan al alumno a enfrentarse a la práctica real, porque el error en el aula es una lección, pero el error en la vida tiene un peso que marca. Enseño desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia técnica son la única vía para formar expertos en la ley, pero sobre todo, íntegros en su humanidad."
+              </blockquote>
 
-                <p>
-                  Mi objetivo es aportar la "nueva inercia" que la docencia exige: rigor técnico-teórico con un enfoque humano. Mi metodología es pragmática; implemento proyectos de unidad donde el alumno someta la teoría a la prueba de la realidad, culminando en un Proyecto Integrador Final que asegura la comprensión total del programa aplicado al entorno diario.
-                </p>
+              <p className="italic">
+                Agradezco de antemano el tiempo dedicado a mi propuesta y quedo a su disposición para una entrevista.
+              </p>
 
-                <blockquote className="border-l-4 border-[#d4a017] pl-8 py-6 my-10 bg-[#0f172a]/50 italic text-2xl">
-                  "No concibo la docencia como un acto de mera transmisión de datos, sino como un ejercicio de responsabilidad humana y jurídica. Mi compromiso nace en las planeaciones académicas buscando la perfección y se materializa en el aula, donde busco romper el esquema de la educación fría para mostrar la realidad tal cual es: cruel y compleja, pero transformable. Mi metodología es el pragmatismo absoluto; diseño estructuras que obligan al alumno a enfrentarse a la práctica real, porque el error en el aula es una lección, pero el error en la vida tiene un peso que marca. Enseño desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia técnica son la única vía para formar expertos en la ley, pero sobre todo, íntegros en su humanidad."
-                </blockquote>
+              <p className="text-center font-bold mt-10">
+                Atentamente,<br />
+                Lic. Eduardo Montalvo Reyes<br />
+                Abogado Litigante y Catedrático
+              </p>
 
-                <p>
-                  Agradezco de antemano el tiempo dedicado a mi propuesta y quedo a su disposición para una entrevista.
-                </p>
-
-                <p className="text-center font-bold mt-10">
-                  Atentamente,<br />
-                  Lic. Eduardo Montalvo Reyes<br />
-                  Abogado Litigante y Catedrático
-                </p>
-
-                <p className="text-center mt-6">
-                  Especialización de Cátedra: Derecho Constitucional y Amparo • Laboral y Seguridad Social • Mercantil • Civil • Epistemología • Ética.
-                </p>
-              </div>
+              <p className="text-center mt-6">
+                Especialización de Cátedra: Derecho Constitucional y Amparo • Laboral y Seguridad Social • Mercantil • Civil • Epistemología • Ética.
+              </p>
             </div>
           </div>
         )}
 
-        {/* Resto de secciones (Conóceme, etc.) mantienen su contenido original */}
+        {/* Resto de secciones */}
       </main>
 
       <footer className="text-center py-6 text-sm border-t border-[#334155]" style={{ color: colors.textDark }}>
