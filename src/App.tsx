@@ -6,10 +6,10 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const colors = {
-    bg: '#0f172a',
-    primary: '#1e293b',
-    accent: '#d4a017',
-    neon: '#a5b4fc',
+    bg: '#0f172a',          // Azul-gris oscuro jovial
+    primary: '#1e293b',     // Paneles
+    accent: '#d4a017',      // Dorado cálido
+    neon: '#a5b4fc',        // Neón sutil hover
     text: '#e2e8f0',
     textDark: '#94a3b8',
   };
@@ -17,6 +17,7 @@ export default function App() {
   const menuItems = [
     { id: 'inicio', label: 'Inicio' },
     { id: 'conoceme', label: 'Conóceme' },
+    { id: 'filosofia', label: 'Filosofía' },
     { id: 'innovacion', label: 'Innovación Académica' },
     { id: 'tribunal', label: 'Tribunal Escolar' },
     { id: 'bachillerato', label: 'Bachillerato' },
@@ -25,16 +26,17 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.bg, color: colors.text }}>
-      {/* Navegación - solo Lic. Montalvo Reyes + Abogado & Catedrático */}
+      {/* Navegación */}
       <nav className="sticky top-0 z-50 backdrop-blur-lg border-b border-[#334155]" style={{ backgroundColor: 'rgba(15, 23, 42, 0.9)' }}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-wider" style={{ color: colors.accent, fontFamily: "'Lora', serif" }}>
-              Lic. Montalvo Reyes
+              EDUARDO MONTALVO REYES
             </h1>
             <p className="text-sm md:text-base uppercase tracking-widest opacity-80">Abogado & Catedrático</p>
           </div>
 
+          {/* Menú desktop */}
           <div className="hidden lg:flex space-x-8">
             {menuItems.map(item => (
               <button
@@ -49,12 +51,14 @@ export default function App() {
             ))}
           </div>
 
+          {/* Botón menú móvil */}
           <button className="lg:hidden text-3xl" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </nav>
 
+      {/* Menú móvil desplegable */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 bg-black/95 flex flex-col items-center justify-center space-y-8 lg:hidden animate-fade-in">
           {menuItems.map(item => (
@@ -69,49 +73,102 @@ export default function App() {
         </div>
       )}
 
+      {/* Contenido principal */}
       <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
-        {/* Inicio */}
+        {/* Inicio - reorganizado */}
         {activeTab === 'inicio' && (
-          <div className="space-y-12 md:space-y-20">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              {/* Lado izquierdo: Video vertical con pie */}
-              <div className="order-2 md:order-1">
-                <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
-                  <iframe
-                    className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-2 border-[#d4a017]/50"
-                    src="https://www.youtube.com/embed/MH13zjcQKC4"
-                    title="Presentación Eduardo Montalvo Reyes"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-center mt-6" style={{ fontFamily: "'Lora', serif", color: '#ffffff' }}>
-                  FORJANDO HOY EL FUTURO DEL MAÑANA
-                </h2>
+          <div className="space-y-12 md:space-y-16 text-center">
+            {/* Nombre grande centrado */}
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-wider mx-auto" style={{ color: colors.accent, fontFamily: "'Lora', serif" }}>
+              EDUARDO MONTALVO REYES
+            </h1>
+
+            {/* Párrafo de IA ética inmediatamente debajo del nombre */}
+            <p className="text-xl md:text-2xl italic max-w-4xl mx-auto leading-relaxed text-justify" style={{ color: colors.textDark }}>
+              Convencido de usar la tecnología y la Inteligencia Artificial de manera consciente y ética, enseño su uso como un apoyo extra para perfeccionar el trabajo humano, jamás como un reemplazo de nuestra esencia y sensibilidad.
+            </p>
+
+            {/* Video vertical + pie */}
+            <div className="mx-auto max-w-md md:max-w-lg lg:max-w-xl mt-12">
+              <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
+                <iframe
+                  className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-2 border-[#d4a017]/30"
+                  src="https://www.youtube.com/embed/Gw0FgPUnEDQ"
+                  title="Presentación Eduardo Montalvo Reyes"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
 
-              {/* Lado derecho: Nombre grande + párrafo destacado */}
-              <div className="order-1 md:order-2 text-center md:text-left space-y-8">
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-wider" style={{ color: colors.accent, fontFamily: "'Lora', serif" }}>
-                  EDUARDO MONTALVO REYES
-                </h1>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mt-6" style={{ fontFamily: "'Lora', serif", color: '#ffffff' }}>
+                FORJANDO HOY EL FUTURO DEL MAÑANA
+              </h2>
+            </div>
 
-                <p className="text-2xl md:text-3xl italic leading-relaxed font-semibold text-justify" style={{ color: '#ffffff' }}>
-                  Convencido de usar la tecnología y la Inteligencia Artificial de manera consciente y ética, enseño su uso como un apoyo extra para perfeccionar el trabajo humano, jamás como un reemplazo de nuestra esencia y sensibilidad.
-                </p>
+            {/* Botones */}
+            <div className="flex justify-center gap-6 mt-12">
+              <button onClick={() => setActiveTab('conoceme')} className="px-8 py-4 bg-[#d4a017] text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#e5b923] transition-all shadow-lg">
+                Conóceme
+              </button>
+              <button onClick={() => setActiveTab('contacto')} className="px-8 py-4 border-2 border-[#d4a017] text-[#d4a017] font-bold uppercase tracking-widest rounded-lg hover:bg-[#d4a017] hover:text-black transition-all">
+                Contacto
+              </button>
+            </div>
 
-                {/* Botón Mi Filosofía */}
-                <div className="mt-12 flex justify-center md:justify-start">
-                  <button onClick={() => setActiveTab('filosofia')} className="px-12 py-5 bg-[#d4a017] text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#e5b923] transition-all shadow-xl text-xl">
-                    Mi Filosofía
-                  </button>
+            {/* Pie con títulos */}
+            <div className="text-center text-lg md:text-xl mt-12" style={{ color: colors.textDark }}>
+              Licenciado en Derecho, Maestrante en Derecho y Profesor
+            </div>
+          </div>
+        )}
+
+        {/* Conóceme */}
+        {activeTab === 'conoceme' && (
+          <div className="max-w-5xl mx-auto space-y-12">
+            <h2 className="text-5xl font-bold text-center tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+              CONÓCEME
+            </h2>
+
+            <div className="flex flex-col md:flex-row items-center gap-12 bg-[#1e293b] p-10 rounded-2xl border border-[#334155]">
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-[#d4a017]/50 flex-shrink-0">
+                <img src="URL-DE-SU-FOTO" alt="Eduardo Montalvo Reyes" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-4xl font-bold" style={{ color: '#ffffff' }}>EDUARDO MONTALVO REYES</h3>
+                <p className="text-xl mt-2" style={{ color: colors.textDark }}>Licenciado en Derecho – Maestrante en Derecho – Profesor Universitario</p>
+                <div className="mt-6 space-y-3 text-lg">
+                  <p><strong>Correo:</strong> lic.montalvo.legal@gmail.com</p>
+                  <p><strong>WhatsApp:</strong> 55 3467 6149</p>
+                  <a href="URL-LINKEDIN" target="_blank" className="inline-flex items-center text-[#d4a017] hover:text-white">
+                    <Linkedin className="mr-2" /> LinkedIn
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Pie títulos */}
-            <div className="text-center text-xl mt-16" style={{ color: colors.textDark }}>
-              Licenciado en Derecho, Maestrante en Derecho y Profesor
+            <div className="prose prose-lg max-w-none text-gray-300 leading-relaxed">
+              <h3 className="text-3xl font-bold mb-6" style={{ color: colors.accent }}>Visión y Misión</h3>
+              <p className="italic">
+                Creo en una educación que forme personas íntegras, críticas y competentes. Mi misión es que cada alumno descubra su potencial y lo ponga al servicio de la justicia y la sociedad, usando la tecnología con ética y responsabilidad.
+              </p>
+
+              <h3 className="text-3xl font-bold mt-12 mb-6" style={{ color: colors.accent }}>Formación y Experiencia</h3>
+              <ul className="list-disc pl-6 space-y-4 text-lg">
+                <li>Licenciado en Derecho por la UNAM</li>
+                <li>Maestrante en Derecho por la UNAM</li>
+                <li>Diplomado en Derecho Procesal Laboral por la UNAM</li>
+                <li>Experiencia docente en Licenciatura y Bachillerato</li>
+              </ul>
+
+              <p className="italic mt-8 text-xl">
+                "Mi más grande carta de recomendación son las cartas de agradecimiento de mis alumnos o clientes. Me hacen ver que el trabajo realizado fue satisfactorio y humano."
+              </p>
+
+              <div className="mt-10 text-center">
+                <a href="https://drive.google.com/file/d/ID-DE-SU-CV/view" target="_blank" className="inline-flex items-center px-8 py-4 bg-[#d4a017] text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#e5b923] transition-all shadow-lg">
+                  <FileText className="mr-3" /> Descargar CV completo (PDF)
+                </a>
+              </div>
             </div>
           </div>
         )}
@@ -120,75 +177,177 @@ export default function App() {
         {activeTab === 'filosofia' && (
           <div className="max-w-5xl mx-auto space-y-12">
             <h2 className="text-5xl font-bold text-center tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
-              Mi Filosofía
+              FILOSOFÍA DOCENTE
             </h2>
 
-            {/* Video vertical integrado */}
-            <div className="mx-auto max-w-md md:max-w-lg lg:max-w-xl">
-              <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
-                <iframe
-                  className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-4 border-[#d4a017]/50"
-                  src="https://www.youtube.com/embed/8vK125i-ctk"
-                  title="Filosofía Eduardo Montalvo Reyes"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-
-            {/* Texto completo del PDF integrado */}
-            <div className="prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-6 bg-[#1e293b] p-10 rounded-2xl border border-[#334155]">
-              <p className="text-center font-semibold text-xl mb-8">
-                A la atención del Comité de Selección / Dirección Académica [Nombre de la Institución]<br />
-                PRESENTE.
-              </p>
-
-              <p>
-                Por medio de la presente, me permito someter a su atenta consideración mi perfil profesional para integrarme al cuerpo docente de su prestigiosa institución en las áreas de Derecho o Ciencias Sociales.
-              </p>
-
-              <p>
-                Soy Licenciado en Derecho por la UNAM y maestrante en Derecho Laboral, ejerciendo activamente como abogado litigante independiente. Esta dualidad me permite trasladar la realidad de los juzgados y la praxis jurídica directamente al aula, fomentando en los estudiantes un pensamiento crítico, ético y, sobre todo, práctico.
-              </p>
-
-              <p>
-                A lo largo de mi trayectoria, me he especializado en el diseño de planes de estudio personalizados mediante herramientas de mi autoría: los "Guiones de Cátedra" y "Temarios Temáticos". Estos instrumentos garantizan un control riguroso de los contenidos, una administración del tiempo optimizada y una dinámica grupal de excelencia. Asimismo, soy un convencido de que la Inteligencia Artificial debe integrarse a la educación como un auxiliar estratégico bajo principios de ética profesional.
-              </p>
-
-              <p>
-                Mi objetivo es aportar la "nueva inercia" que la docencia exige: rigor técnico-teórico con un enfoque humano. Mi metodología es pragmática; implemento proyectos de unidad donde el alumno someta la teoría a la prueba de la realidad, culminando en un Proyecto Integrador Final que asegura la comprensión total del programa aplicado al entorno diario.
+            <div className="prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-8 bg-[#1e293b] p-10 rounded-2xl border border-[#334155]">
+              <p className="italic text-2xl">
+                No concibo la docencia como un acto de mera transmisión de datos, sino como un ejercicio de responsabilidad humana y jurídica. Mi compromiso nace en las planeaciones académicas buscando la perfección y se materializa en el aula, donde busco romper el esquema de la educación fría para mostrar la realidad tal cual es: compleja, pero transformable.
               </p>
 
               <blockquote className="border-l-4 border-[#d4a017] pl-8 py-6 my-10 bg-[#0f172a]/50 italic text-2xl">
-                "No concibo la docencia como un acto de mera transmisión de datos, sino como un ejercicio de responsabilidad humana y jurídica. Mi compromiso nace en las planeaciones académicas buscando la perfección y se materializa en el aula, donde busco romper el esquema de la educación fría para mostrar la realidad tal cual es: cruel y compleja, pero transformable. Mi metodología es el pragmatismo absoluto; diseño estructuras que obligan al alumno a enfrentarse a la práctica real, porque el error en el aula es una lección, pero el error en la vida tiene un peso que marca. Enseño desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia técnica son la única vía para formar expertos en la ley, pero sobre todo, íntegros en su humanidad."
+                "Diseño estructuras que obligan al alumno a enfrentarse a la práctica real, porque el error en el aula es una lección, pero el error en la vida tiene un peso que marca."
               </blockquote>
 
               <p>
-                Agradezco de antemano el tiempo dedicado a mi propuesta y quedo a su disposición para una entrevista.
-              </p>
-
-              <p className="text-center font-bold mt-10">
-                Atentamente,<br />
-                Lic. Eduardo Montalvo Reyes<br />
-                Abogado Litigante y Catedrático
-              </p>
-
-              <p className="text-center mt-6">
-                Especialización de Cátedra: Derecho Constitucional y Amparo • Laboral y Seguridad Social • Mercantil • Civil • Epistemología • Ética.
+                Enseño desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia técnica son la única vía para formar expertos en la ley, pero sobre todo, íntegros en su humanidad.
               </p>
             </div>
           </div>
         )}
 
-        {/* Otras secciones (Conóceme, Innovación, Tribunal, Bachillerato, Contacto) permanecen iguales */}
-        {/* Pegue aquí las secciones restantes de su código anterior si las quiere conservar */}
+        {/* Innovación Académica */}
+        {activeTab === 'innovacion' && (
+          <div className="space-y-16">
+            <div className="text-center">
+              <h2 className="text-5xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+                INNOVACIÓN ACADÉMICA
+              </h2>
+              <p className="text-2xl italic text-gray-400 mt-6 max-w-4xl mx-auto">
+                Mis innovaciones nunca van contra el sistema educativo; van a favor de perfeccionarlo. Cubro los huecos que la educación tradicional deja abiertos, siempre con respeto y actualización constante.
+              </p>
+            </div>
 
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all group shadow-xl">
+                <div className="flex items-center gap-4 mb-6">
+                  <FileText className="text-[#d4a017] group-hover:scale-110 transition-transform" size={56} />
+                  <h3 className="text-3xl font-bold">Actualización de Temario</h3>
+                </div>
+                <iframe src="https://drive.google.com/file/d/1Em4Qvq6wvDRyTTaEGrLLxKyCpN0iVav0/preview" className="w-full h-80 rounded-xl" allow="autoplay"></iframe>
+                <a href="https://drive.google.com/file/d/1Em4Qvq6wvDRyTTaEGrLLxKyCpN0iVav0/view" target="_blank" className="mt-6 inline-block text-[#d4a017] hover:text-white font-bold text-lg">
+                  Ver documento completo →
+                </a>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all group shadow-xl">
+                <div className="flex items-center gap-4 mb-6">
+                  <FileText className="text-[#d4a017] group-hover:scale-110 transition-transform" size={56} />
+                  <h3 className="text-3xl font-bold">Temarios Temáticos</h3>
+                </div>
+                <iframe src="https://drive.google.com/file/d/1ArOiedBdJgJ7VPc_tCDGVY9SfLJg669e/preview" className="w-full h-80 rounded-xl" allow="autoplay"></iframe>
+                <a href="https://drive.google.com/file/d/1ArOiedBdJgJ7VPc_tCDGVY9SfLJg669e/view" target="_blank" className="mt-6 inline-block text-[#d4a017] hover:text-white font-bold text-lg">
+                  Ver documento completo →
+                </a>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all group shadow-xl">
+                <div className="flex items-center gap-4 mb-6">
+                  <Youtube className="text-[#d4a017] group-hover:scale-110 transition-transform" size={56} />
+                  <h3 className="text-3xl font-bold">Guiones de Cátedra</h3>
+                </div>
+                <iframe src="https://drive.google.com/file/d/17NkMEV-fXOulCliPIxA2hnIn9YvdGw5b/preview" className="w-full h-80 rounded-xl" allow="autoplay"></iframe>
+                <a href="https://drive.google.com/file/d/17NkMEV-fXOulCliPIxA2hnIn9YvdGw5b/view" target="_blank" className="mt-6 inline-block text-[#d4a017] hover:text-white font-bold text-lg">
+                  Ver documento completo →
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tribunal Escolar */}
+        {activeTab === 'tribunal' && (
+          <div className="space-y-16">
+            <div className="text-center">
+              <h2 className="text-5xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+                TRIBUNAL ESCOLAR
+              </h2>
+              <p className="text-2xl italic text-gray-400 mt-6 max-w-4xl mx-auto">
+                Transformo el aula en un despacho jurídico real para que mis alumnos no solo estudien el proceso, sino que lo vivan con responsabilidad y pasión.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl">
+                <h3 className="text-3xl font-bold mb-6" style={{ color: '#ffffff' }}>Juicio Práctico</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  Mi intención es que practiques el procedimiento completo de un juicio: desde el escrito inicial hasta la sentencia, pasando por todos los trámites. Con mi guía resolverás dudas reales de litigantes.
+                </p>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl">
+                <h3 className="text-3xl font-bold mb-6" style={{ color: '#ffffff' }}>Juicio de Amparo</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  En México y el mundo los derechos humanos son la rienda actual. Enseñar a agotar el principio de definitividad en el aula asegura que mis alumnos dominen este procedimiento constitucional clave.
+                </p>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl">
+                <h3 className="text-3xl font-bold mb-6" style={{ color: '#ffffff' }}>Secretariado</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  Estos procedimientos son de mi autoría y están diseñados exclusivamente para el Tribunal Escolar. No violentan derechos de terceros, pero se acercan lo más posible a la realidad procesal.
+                </p>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl">
+                <h3 className="text-3xl font-bold mb-6" style={{ color: '#ffffff' }}>Creación de Herramienta Pedagógica</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  El alumno crea su propio Código Normativo estudiantil, que funciona como reglamento de clase y le enseña a fundamentar procesalmente cada promoción, tarea o examen como si fuera un juzgado real.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Bachillerato */}
+        {activeTab === 'bachillerato' && (
+          <div className="space-y-16">
+            <div className="text-center">
+              <h2 className="text-5xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+                BACHILLERATO
+              </h2>
+              <p className="text-2xl italic text-gray-400 mt-6 max-w-4xl mx-auto">
+                Mi pasión por este nivel me ha permitido acompañar a los alumnos en su formación integral, adaptándome a cada materia con el mismo compromiso y humanidad.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl">
+                <h3 className="text-3xl font-bold mb-6" style={{ color: '#ffffff' }}>Ética y Valores</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  Aquí forjo ética y buena fe práctica. Ayudo a los alumnos a tomar decisiones correctas en el momento justo, redescubriendo su propia realidad moral.
+                </p>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl">
+                <h3 className="text-3xl font-bold mb-6" style={{ color: '#ffffff' }}>Historia de México y el Mundo</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  Enseño a ver la historia como algo conectado: México en el mundo y el mundo en México. Genero identidad y comprensión global en cada alumno.
+                </p>
+              </div>
+
+              <div className="bg-[#1e293b] p-8 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl">
+                <h3 className="text-3xl font-bold mb-6" style={{ color: '#ffffff' }}>Taller de Lectura y Redacción</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  Despierto la importancia de la buena ortografía y comunicación efectiva. Capacito para generar escritos profesionales que servirán toda la vida.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Contacto */}
+        {activeTab === 'contacto' && (
+          <div className="max-w-4xl mx-auto space-y-12 text-center">
+            <h2 className="text-5xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+              CONTACTO DIRECTO
+            </h2>
+            <p className="text-2xl italic text-gray-400">
+              Estoy a su disposición para cualquier consulta profesional o académica.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <a href="mailto:lic.montalvo.legal@gmail.com" className="bg-[#1e293b] p-10 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl flex flex-col items-center gap-4">
+                <Mail className="text-[#d4a017]" size={64} />
+                <div>
+                  <p className="text-xl font-bold">Correo Electrónico</p>
+                  <p className="text-lg text-[#d4a017]">lic.montalvo.legal@gmail.com</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        )}
       </main>
-
-      {/* Footer */}
-      <footer className="text-center py-6 text-sm border-t border-[#334155]" style={{ color: colors.textDark }}>
-        Todos los derechos reservados © {new Date().getFullYear()} Eduardo Montalvo Reyes
-      </footer>
     </div>
   );
 }
