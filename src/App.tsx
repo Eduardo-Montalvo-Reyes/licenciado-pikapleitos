@@ -18,7 +18,7 @@ export default function App() {
     { id: 'inicio', label: 'Inicio' },
     { id: 'conoceme', label: 'Conóceme' },
     { id: 'filosofia', label: 'Filosofía' },
-    { id: 'invasion', label: 'Invasión Académica' },
+    { id: 'innovacion', label: 'Innovación Académica' },  // ← Cambiado aquí
     { id: 'tribunal', label: 'Tribunal Escolar' },
     { id: 'bachillerato', label: 'Bachillerato' },
     { id: 'contacto', label: 'Contacto' },
@@ -186,12 +186,12 @@ export default function App() {
           </div>
         )}
 
-        {/* Innovación Académica */}
+        {/* Innovación Académica - cambiado de Invasión */}
         {activeTab === 'innovacion' && (
           <div className="space-y-16">
             <div className="text-center">
               <h2 className="text-5xl font-bold tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
-                INVASIÓN ACADÉMICA
+                INNOVACIÓN ACADÉMICA
               </h2>
               <p className="text-2xl italic text-gray-400 mt-6 max-w-4xl mx-auto">
                 Mis innovaciones nunca van contra el sistema educativo; van a favor de perfeccionarlo. Cubro los huecos que la educación tradicional deja abiertos, siempre con respeto y actualización constante.
@@ -345,31 +345,4 @@ export default function App() {
                 <Mail className="text-[#d4a017]" size={64} />
                 <div>
                   <p className="text-xl font-bold">Correo Electrónico</p>
-                  <p className="text-lg text-[#d4a017]">lic.montalvo.legal@gmail.com</p>
-                </div>
-              </a>
-
-              <a href="https://wa.me/525534676149" target="_blank" className="bg-[#1e293b] p-10 rounded-2xl border border-[#334155] hover:border-[#d4a017] transition-all shadow-xl flex flex-col items-center gap-4">
-                <Phone className="text-[#d4a017]" size={64} />
-                <div>
-                  <p className="text-xl font-bold">WhatsApp / Móvil</p>
-                  <p className="text-lg text-[#d4a017]">55 3467 6149</p>
-                </div>
-              </a>
-            </div>
-
-            <p className="italic text-2xl text-gray-400 mt-12">
-              "Mi más grande carta de recomendación son las cartas de agradecimiento de mis alumnos o clientes."
-            </p>
-          </div>
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-[#334155] py-12 text-center text-gray-400 bg-[#0f172a]">
-        <p>Lic. Eduardo Montalvo Reyes • Abogado • Catedrático</p>
-        <p className="text-sm mt-2">Todos los derechos reservados © 2026</p>
-      </footer>
-    </div>
-  );
-}
+        
