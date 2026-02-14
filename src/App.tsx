@@ -24,13 +24,13 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.bg, color: colors.text }}>
+    <div className="min-h-screen font-['Inter',sans-serif]" style={{ backgroundColor: colors.bg, color: colors.text }}>
       {/* Navegación */}
       <nav className="sticky top-0 z-50 backdrop-blur-lg border-b border-[#334155]" style={{ backgroundColor: 'rgba(15, 23, 42, 0.9)' }}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-wider" style={{ color: colors.accent, fontFamily: "'Lora', serif" }}>
-              Lic. Montalvo Reyes
+            <h1 className="text-4xl md:text-5xl font-['Playfair_Display',serif] font-bold tracking-wide" style={{ color: colors.accent }}>
+              lic. montalvo reyes
             </h1>
             <p className="text-sm md:text-base uppercase tracking-widest opacity-80">Abogado & Catedrático</p>
           </div>
@@ -73,7 +73,7 @@ export default function App() {
         {/* Inicio */}
         {activeTab === 'inicio' && (
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Izquierda: Video con thumbnail visible (sin autoplay) */}
+            {/* Izquierda: Video */}
             <div>
               <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
                 <iframe
@@ -84,23 +84,29 @@ export default function App() {
                   allowFullScreen
                 ></iframe>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-center mt-6" style={{ fontFamily: "'Lora', serif", color: '#ffffff' }}>
+              <h2 className="text-4xl md:text-5xl font-['Playfair_Display',serif] font-bold text-center mt-6 text-white">
                 FORJANDO HOY EL FUTURO DEL MAÑANA
               </h2>
             </div>
 
-            {/* Derecha: Nombre + texto destacado */}
+            {/* Derecha: Nombre + texto */}
             <div className="space-y-8 text-center md:text-left">
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-wider" style={{ color: colors.accent, fontFamily: "'Lora', serif" }}>
+              <h1 
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-['Playfair_Display',serif] font-bold tracking-wider leading-tight"
+                style={{ color: colors.accent }}
+              >
                 EDUARDO MONTALVO REYES
               </h1>
 
-              <p className="text-2xl md:text-3xl italic font-semibold leading-relaxed text-justify" style={{ color: '#ffffff' }}>
+              <p className="text-xl md:text-2xl lg:text-3xl italic font-semibold leading-relaxed text-justify text-white">
                 Convencido de usar la tecnología y la Inteligencia Artificial de manera consciente y ética, enseño su uso como un apoyo extra para perfeccionar el trabajo humano, jamás como un reemplazo de nuestra esencia y sensibilidad.
               </p>
 
               <div className="mt-12 flex justify-center md:justify-start">
-                <button onClick={() => setActiveTab('filosofia')} className="px-12 py-5 bg-[#d4a017] text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#e5b923] transition-all shadow-xl text-xl">
+                <button 
+                  onClick={() => setActiveTab('filosofia')}
+                  className="px-12 py-5 bg-[#d4a017] text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#e5b923] transition-all shadow-xl text-xl shadow-dorada"
+                >
                   Mi Filosofía
                 </button>
               </div>
@@ -110,26 +116,36 @@ export default function App() {
 
         {/* Filosofía */}
         {activeTab === 'filosofia' && (
-          <div className="max-w-5xl mx-auto space-y-12">
-            <h2 className="text-5xl font-bold text-center tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
+          <div className="max-w-5xl mx-auto space-y-16 pt-8">
+            <h2 className="text-5xl font-['Playfair_Display',serif] font-bold text-center tracking-wide" style={{ color: colors.accent }}>
               Mi Filosofía
             </h2>
 
-            {/* Video pequeño arriba del texto */}
-            <div className="mx-auto max-w-sm">
-              <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
-                <iframe
-                  className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-4 border-[#d4a017]/50"
-                  src="https://www.youtube.com/embed/8vK125i-ctk"
-                  title="Filosofía Eduardo Montalvo Reyes"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+            {/* Video pequeño a la izquierda + frase a la derecha */}
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
+              <div className="w-full md:w-auto">
+                <div className="mx-auto md:mx-0 max-w-[9rem] md:max-w-xs lg:max-w-sm">
+                  <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
+                    <iframe
+                      className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-4 border-[#d4a017]/50 sombra-dorada"
+                      src="https://www.youtube.com/embed/8vK125i-ctk"
+                      title="Filosofía Eduardo Montalvo Reyes"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex-1">
+                <p className="text-xl md:text-2xl font-['Playfair_Display',serif] italic text-[#d4a017] leading-relaxed text-center md:text-left">
+                  “La enseñanza y la tecnología deben ir de la mano, complementándose, mas no evitándose.”
+                </p>
               </div>
             </div>
 
-            {/* Texto limpio, sin encabezado formal, pensamiento en cursiva */}
-            <div className="prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-6 bg-[#1e293b] p-10 rounded-2xl border border-[#334155]">
+            {/* Texto */}
+            <div className="prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-6 bg-[#1e293b] p-10 rounded-2xl border borde-dorado-opaco">
               <p>
                 Soy Licenciado en Derecho por la UNAM y maestrante en Derecho Laboral, ejerciendo activamente como abogado litigante independiente. Esta dualidad me permite trasladar la realidad de los juzgados y la praxis jurídica directamente al aula, fomentando en los estudiantes un pensamiento crítico, ético y, sobre todo, práctico.
               </p>
@@ -142,7 +158,7 @@ export default function App() {
                 Mi objetivo es aportar la "nueva inercia" que la docencia exige: rigor técnico-teórico con un enfoque humano. Mi metodología es pragmática; implemento proyectos de unidad donde el alumno someta la teoría a la prueba de la realidad, culminando en un Proyecto Integrador Final que asegura la comprensión total del programa aplicado al entorno diario.
               </p>
 
-              <blockquote className="border-l-4 border-[#d4a017] pl-8 py-6 my-10 bg-[#0f172a]/50 italic text-2xl">
+              <blockquote className="border-l-4 border-[#d4a017] pl-8 py-6 my-10 bg-[#0f172a]/50 italic text-2xl borde-dorado-opaco">
                 "No concibo la docencia como un acto de mera transmisión de datos, sino como un ejercicio de responsabilidad humana y jurídica. Mi compromiso nace en las planeaciones académicas buscando la perfección y se materializa en el aula, donde busco romper el esquema de la educación fría para mostrar la realidad tal cual es: cruel y compleja, pero transformable. Mi metodología es el pragmatismo absoluto; diseño estructuras que obligan al alumno a enfrentarse a la práctica real, porque el error en el aula es una lección, pero el error en la vida tiene un peso que marca. Enseño desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia técnica son la única vía para formar expertos en la ley, pero sobre todo, íntegros en su humanidad."
               </blockquote>
 
@@ -166,8 +182,8 @@ export default function App() {
         {/* Resto de secciones */}
       </main>
 
-      <footer className="text-center py-6 text-sm border-t border-[#334155]" style={{ color: colors.textDark }}>
-        Todos los derechos reservados © {new Date().getFullYear()} Eduardo Montalvo Reyes
+      <footer className="text-center py-10 text-sm border-t border-[#334155]" style={{ color: colors.textDark }}>
+        Todos los derechos reservados © {new Date().getFullYear()} eduardo montalvo reyes
       </footer>
     </div>
   );
