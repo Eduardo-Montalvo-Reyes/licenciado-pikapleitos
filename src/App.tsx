@@ -345,4 +345,15 @@ export default function App() {
                 <Mail className="text-[#d4a017]" size={64} />
                 <div>
                   <p className="text-xl font-bold">Correo Electrónico</p>
-        
+                  <p className="text-lg text-[#d4a017]">lic.montalvo.legal@gmail.com</p>
+                </div>
+              </a>
+
+              {/* Aquí puedes agregar más opciones como WhatsApp, teléfono, formulario, etc. */}
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
