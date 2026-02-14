@@ -30,7 +30,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-wider" style={{ color: colors.accent, fontFamily: "'Lora', serif" }}>
-              Lic. Montalvo Reyes
+              LIC. MONTALVO REYES
             </h1>
             <p className="text-sm md:text-base uppercase tracking-widest opacity-80">Abogado & Catedrático</p>
           </div>
@@ -73,12 +73,12 @@ export default function App() {
         {/* Inicio */}
         {activeTab === 'inicio' && (
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Izquierda: Video con thumbnail visible (sin autoplay) */}
+            {/* Izquierda: Video */}
             <div>
               <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border-2 border-[#d4a017]/50">
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/MH13zjcQKC4"
+                  src="https://www.youtube.com/embed/MH13zjcQKC4?rel=0"
                   title="Presentación Eduardo Montalvo Reyes"
                   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -90,7 +90,7 @@ export default function App() {
               </h2>
             </div>
 
-            {/* Derecha: Nombre + texto destacado */}
+            {/* Derecha: Nombre + texto */}
             <div className="space-y-8 text-center md:text-left">
               <h1 
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wider leading-tight"
@@ -115,19 +115,19 @@ export default function App() {
           </div>
         )}
 
-        {/* Filosofía – sección independiente, NO en menú */}
+        {/* Filosofía – independiente */}
         {activeTab === 'filosofia' && (
           <div className="max-w-5xl mx-auto space-y-12">
             <h2 className="text-5xl font-bold text-center tracking-widest" style={{ fontFamily: "'Lora', serif", color: colors.accent }}>
               Mi Filosofía
             </h2>
 
-            {/* Video pequeño arriba del texto */}
+            {/* Video pequeño */}
             <div className="mx-auto max-w-sm md:max-w-md lg:max-w-lg">
               <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-[#d4a017]/50">
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/8vK125i-ctk"
+                  src="https://www.youtube.com/embed/8vK125i-ctk?rel=0"
                   title="Filosofía Eduardo Montalvo Reyes"
                   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -136,7 +136,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Texto limpio */}
+            {/* Texto */}
             <div className="prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-6 bg-[#1e293b] p-10 rounded-2xl border border-[#334155]">
               <p>
                 Soy Licenciado en Derecho por la UNAM y maestrante en Derecho Laboral, ejerciendo activamente como abogado litigante independiente. Esta dualidad me permite trasladar la realidad de los juzgados y la praxis jurídica directamente al aula, fomentando en los estudiantes un pensamiento crítico, ético y, sobre todo, práctico.
@@ -168,24 +168,14 @@ export default function App() {
                 Especialización de Cátedra: Derecho Constitucional y Amparo • Laboral y Seguridad Social • Mercantil • Civil • Epistemología • Ética.
               </p>
             </div>
-
-            {/* Botón para regresar a inicio */}
-            <div className="text-center">
-              <button
-                onClick={() => setActiveTab('inicio')}
-                className="px-10 py-4 bg-[#334155] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#475569] transition-all text-lg"
-              >
-                Regresar al Inicio
-              </button>
-            </div>
           </div>
         )}
 
-        {/* Aquí irían las otras secciones cuando las desarrolle */}
+        {/* Otras secciones pendientes */}
       </main>
 
       <footer className="text-center py-6 text-sm border-t border-[#334155]" style={{ color: colors.textDark }}>
-        Todos los derechos reservados © {new Date().getFullYear()} Eduardo Montalvo Reyes
+        Licenciado en Derecho, Maestrante en Derecho y Profesor | Todos los derechos reservados ©2026
       </footer>
     </div>
   );
