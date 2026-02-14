@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { FileText, Youtube, Scale, BookOpen, Mail, Phone, Menu, X, ChevronRight } from 'lucide-react';
+import { Youtube, Menu, X, ChevronRight } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Paleta de colores renovada: Gris principal, Azul para secciones, Dorado brillante
   const colors = {
-    bg: '#0f172a',
-    primary: '#1e293b',
-    accent: '#d4a017',
-    neon: '#a5b4fc',
-    text: '#e2e8f0',
-    textDark: '#94a3b8',
+    bg: '#1a1c1e', // Gris profundo
+    secondaryBg: '#0f172a', // Azul marino para secciones
+    accent: '#d4a017', // Dorado
+    glow: 'rgba(212, 160, 23, 0.4)', // Brillo dorado
+    text: '#f1f5f9',
+    textMuted: '#94a3b8',
   };
 
   const menuItems = [
@@ -23,25 +24,31 @@ export default function App() {
     { id: 'contacto', label: 'Contacto' },
   ];
 
+  // Estilos comunes para botones y efectos de brillo
+  const glowStyle = "transition-all duration-300 hover:shadow-[0_0_15px_rgba(212,160,23,0.6)] hover:scale-105 active:scale-95";
+
   return (
-    <div className="min-h-screen font-['Inter',sans-serif]" style={{ backgroundColor: colors.bg, color: colors.text }}>
+    <div className="min-h-screen" style={{ backgroundColor: colors.bg, color: colors.text, fontFamily: "'Inter', sans-serif" }}>
+      
       {/* Navegación */}
-      <nav className="sticky top-0 z-50 backdrop-blur-lg border-b border-[#334155]" style={{ backgroundColor: 'rgba(15, 23, 42, 0.9)' }}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-['Playfair_Display',serif] font-bold tracking-wide" style={{ color: colors.accent }}>
-              lic. montalvo reyes
+      <nav className="sticky top-0 z-50 backdrop-blur-md border-b border-gray-700" style={{ backgroundColor: 'rgba(26, 28, 30, 0.9)' }}>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+          <div className="flex flex-col">
+            <h1 className="text-2xl md:text-3xl font-serif font-bold tracking-tighter" style={{ color: colors.accent }}>
+              LIC. MONTALVO REYES
             </h1>
-            <p className="text-sm md:text-base uppercase tracking-widest opacity-80">Abogado & Catedrático</p>
+            <span className="text-xs uppercase tracking-[0.3em] opacity-70">Abogado & Catedrático</span>
           </div>
 
-          <div className="hidden lg:flex space-x-8">
+          <div className="hidden lg:flex space-x-6">
             {menuItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`uppercase text-sm tracking-widest font-medium transition-all ${
-                  activeTab === item.id ? 'text-[#d4a017] border-b-2 border-[#d4a017]' : 'text-gray-400 hover:text-white'
+                className={`uppercase text-xs tracking-widest font-bold px-3 py-2 rounded transition-all ${
+                  activeTab === item.id 
+                  ? 'text-white border-b-2 border-[#d4a017] shadow-[0_4px_10px_-2px_rgba(212,160,23,0.5)]' 
+                  : 'text-gray-400 hover:text-[#d4a017]'
                 }`}
               >
                 {item.label}
@@ -49,19 +56,20 @@ export default function App() {
             ))}
           </div>
 
-          <button className="lg:hidden text-3xl" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="lg:hidden p-2 rounded-full border border-gray-600" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </nav>
 
+      {/* Menú Móvil */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/95 flex flex-col items-center justify-center space-y-8 lg:hidden animate-fade-in">
+        <div className="fixed inset-0 z-40 bg-black/95 flex flex-col items-center justify-center space-y-6 lg:hidden">
           {menuItems.map(item => (
             <button
               key={item.id}
               onClick={() => { setActiveTab(item.id); setMenuOpen(false); }}
-              className="text-2xl uppercase tracking-widest text-white hover:text-[#d4a017] transition-colors"
+              className="text-xl uppercase tracking-widest text-white hover:text-[#d4a017]"
             >
               {item.label}
             </button>
@@ -69,43 +77,33 @@ export default function App() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
-        {/* Inicio */}
+      <main className="max-w-6xl mx-auto px-4 py-10 md:py-16">
+        
+        {/* SECCIÓN: INICIO */}
         {activeTab === 'inicio' && (
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Izquierda: Video */}
-            <div>
-              <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="w-full lg:w-1/2">
+              <div className="relative aspect-[9/16] max-w-[320px] mx-auto rounded-3xl overflow-hidden shadow-2xl border-2 border-[#d4a017]/30">
                 <iframe
-                  className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-2 border-[#d4a017]/50"
+                  className="absolute inset-0 w-full h-full"
                   src="https://www.youtube.com/embed/MH13zjcQKC4"
-                  title="Presentación Eduardo Montalvo Reyes"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  title="Presentación"
                   allowFullScreen
                 ></iframe>
               </div>
-              <h2 className="text-4xl md:text-5xl font-['Playfair_Display',serif] font-bold text-center mt-6 text-white">
-                FORJANDO HOY EL FUTURO DEL MAÑANA
-              </h2>
             </div>
 
-            {/* Derecha: Nombre + texto */}
-            <div className="space-y-8 text-center md:text-left">
-              <h1 
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-['Playfair_Display',serif] font-bold tracking-wider leading-tight"
-                style={{ color: colors.accent }}
-              >
+            <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+              <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight" style={{ color: colors.accent }}>
                 EDUARDO MONTALVO REYES
-              </h1>
-
-              <p className="text-xl md:text-2xl lg:text-3xl italic font-semibold leading-relaxed text-justify text-white">
-                Convencido de usar la tecnología y la Inteligencia Artificial de manera consciente y ética, enseño su uso como un apoyo extra para perfeccionar el trabajo humano, jamás como un reemplazo de nuestra esencia y sensibilidad.
+              </h2>
+              <p className="text-lg md:text-xl font-serif italic text-gray-300 leading-relaxed border-l-4 border-[#d4a017] pl-6 py-2">
+                "Convencido de usar la tecnología y la Inteligencia Artificial de manera consciente y ética, enseño su uso como un apoyo extra para perfeccionar el trabajo humano, jamás como un reemplazo de nuestra esencia y sensibilidad."
               </p>
-
-              <div className="mt-12 flex justify-center md:justify-start">
+              <div className="pt-4">
                 <button 
                   onClick={() => setActiveTab('filosofia')}
-                  className="px-12 py-5 bg-[#d4a017] text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#e5b923] transition-all shadow-xl text-xl shadow-dorada"
+                  className={`px-10 py-4 bg-[#d4a017] text-black font-black uppercase tracking-widest rounded-full text-sm shadow-lg ${glowStyle}`}
                 >
                   Mi Filosofía
                 </button>
@@ -114,77 +112,65 @@ export default function App() {
           </div>
         )}
 
-        {/* Filosofía */}
+        {/* SECCIÓN: FILOSOFÍA (Independiente y Especial) */}
         {activeTab === 'filosofia' && (
-          <div className="max-w-5xl mx-auto space-y-16 pt-8">
-            <h2 className="text-5xl font-['Playfair_Display',serif] font-bold text-center tracking-wide" style={{ color: colors.accent }}>
-              Mi Filosofía
-            </h2>
-
-            {/* Video pequeño a la izquierda + frase a la derecha */}
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
-              <div className="w-full md:w-auto">
-                <div className="mx-auto md:mx-0 max-w-[9rem] md:max-w-xs lg:max-w-sm">
-                  <div className="relative w-full pb-[177.78%]" style={{ paddingBottom: '177.78%' }}>
+          <div className="max-w-4xl mx-auto animate-fade-in">
+            <div className="bg-[#0f172a] p-8 md:p-12 rounded-[2rem] border border-[#d4a017]/20 shadow-2xl">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-12" style={{ color: colors.accent }}>
+                Mi Filosofía
+              </h2>
+              
+              <div className="flex flex-col md:flex-row gap-10 items-center mb-10">
+                <div className="w-40 md:w-56 flex-shrink-0">
+                  <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border-2 border-[#d4a017] shadow-[0_0_20px_rgba(212,160,23,0.3)]">
                     <iframe
-                      className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border-4 border-[#d4a017]/50 sombra-dorada"
+                      className="absolute inset-0 w-full h-full"
                       src="https://www.youtube.com/embed/8vK125i-ctk"
-                      title="Filosofía Eduardo Montalvo Reyes"
-                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      title="Short Filosofía"
                       allowFullScreen
                     ></iframe>
                   </div>
                 </div>
+                <div className="flex-1">
+                  <p className="text-xl md:text-3xl font-serif italic font-medium leading-snug text-center md:text-left" style={{ color: colors.accent }}>
+                    “La enseñanza y la tecnología deben ir de la mano, complementándose; mas nunca, evitarse.”
+                  </p>
+                </div>
               </div>
 
-              <div className="flex-1">
-                <p className="text-xl md:text-2xl font-['Playfair_Display',serif] italic text-[#d4a017] leading-relaxed text-center md:text-left">
-                  “La enseñanza y la tecnología deben ir de la mano, complementándose, mas no evitándose.”
+              <div className="space-y-6 text-gray-200 text-base md:text-lg leading-relaxed text-justify">
+                <p>
+                  Soy Licenciado en Derecho por la UNAM y maestrante en Derecho Laboral. Ejerzo activamente como abogado litigante independiente, una dualidad que me permite trasladar la realidad de los juzgados directamente al aula.
                 </p>
+                <p className="italic font-serif text-gray-400 bg-white/5 p-6 rounded-xl border-l-2 border-[#d4a017]">
+                  "No concibo la docencia como un acto de mera transmisión de datos, sino como un ejercicio de responsabilidad humana y jurídica. Mi metodología es el pragmatismo absoluto: diseño estructuras que obligan al alumno a enfrentarse a la práctica real, porque el error en el aula es una lección, pero en la vida tiene un peso que marca."
+                </p>
+                <div className="text-center pt-8">
+                  <p className="font-bold text-[#d4a017]">Atentamente,</p>
+                  <p className="text-xl font-serif">Lic. Eduardo Montalvo Reyes</p>
+                  <p className="text-sm opacity-60">Abogado Litigante y Catedrático</p>
+                </div>
               </div>
-            </div>
-
-            {/* Texto */}
-            <div className="prose prose-xl max-w-none text-gray-300 leading-relaxed space-y-6 bg-[#1e293b] p-10 rounded-2xl border borde-dorado-opaco">
-              <p>
-                Soy Licenciado en Derecho por la UNAM y maestrante en Derecho Laboral, ejerciendo activamente como abogado litigante independiente. Esta dualidad me permite trasladar la realidad de los juzgados y la praxis jurídica directamente al aula, fomentando en los estudiantes un pensamiento crítico, ético y, sobre todo, práctico.
-              </p>
-
-              <p>
-                A lo largo de mi trayectoria, me he especializado en el diseño de planes de estudio personalizados mediante herramientas de mi autoría: los "Guiones de Cátedra" y "Temarios Temáticos". Estos instrumentos garantizan un control riguroso de los contenidos, una administración del tiempo optimizada y una dinámica grupal de excelencia. Asimismo, soy un convencido de que la Inteligencia Artificial debe integrarse a la educación como un auxiliar estratégico bajo principios de ética profesional.
-              </p>
-
-              <p className="italic">
-                Mi objetivo es aportar la "nueva inercia" que la docencia exige: rigor técnico-teórico con un enfoque humano. Mi metodología es pragmática; implemento proyectos de unidad donde el alumno someta la teoría a la prueba de la realidad, culminando en un Proyecto Integrador Final que asegura la comprensión total del programa aplicado al entorno diario.
-              </p>
-
-              <blockquote className="border-l-4 border-[#d4a017] pl-8 py-6 my-10 bg-[#0f172a]/50 italic text-2xl borde-dorado-opaco">
-                "No concibo la docencia como un acto de mera transmisión de datos, sino como un ejercicio de responsabilidad humana y jurídica. Mi compromiso nace en las planeaciones académicas buscando la perfección y se materializa en el aula, donde busco romper el esquema de la educación fría para mostrar la realidad tal cual es: cruel y compleja, pero transformable. Mi metodología es el pragmatismo absoluto; diseño estructuras que obligan al alumno a enfrentarse a la práctica real, porque el error en el aula es una lección, pero el error en la vida tiene un peso que marca. Enseño desde mis aciertos y desde las cicatrices de mis errores, con la esperanza de que mis estudiantes no carguen con mis mismos pesos. Decido darlo todo por ellos, porque la bondad y la exigencia técnica son la única vía para formar expertos en la ley, pero sobre todo, íntegros en su humanidad."
-              </blockquote>
-
-              <p className="italic">
-                Agradezco de antemano el tiempo dedicado a mi propuesta y quedo a su disposición para una entrevista.
-              </p>
-
-              <p className="text-center font-bold mt-10">
-                Atentamente,<br />
-                Lic. Eduardo Montalvo Reyes<br />
-                Abogado Litigante y Catedrático
-              </p>
-
-              <p className="text-center mt-6">
-                Especialización de Cátedra: Derecho Constitucional y Amparo • Laboral y Seguridad Social • Mercantil • Civil • Epistemología • Ética.
-              </p>
             </div>
           </div>
         )}
 
-        {/* Resto de secciones */}
       </main>
 
-      <footer className="text-center py-10 text-sm border-t border-[#334155]" style={{ color: colors.textDark }}>
-        Todos los derechos reservados © {new Date().getFullYear()} eduardo montalvo reyes
+      {/* Pie de Página */}
+      <footer className="mt-20 border-t border-gray-800 py-12 px-6 text-center">
+        <p className="text-sm md:text-base tracking-wide" style={{ color: colors.textMuted }}>
+          Lic. en Derecho, Maestrante en Derecho y Profesor | Todos los derechos reservados 2026.
+        </p>
       </footer>
+
+      {/* Estilos Globales Extra */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      `}} />
     </div>
   );
 }
