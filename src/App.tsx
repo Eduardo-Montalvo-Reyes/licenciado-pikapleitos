@@ -6,7 +6,6 @@ import Inicio from './sections/Inicio';
 import Filosofia from './sections/Filosofia';
 import Conoceme from './sections/Conoceme';
 import Bachillerato from './sections/Bachillerato';
-import Innovacion from './sections/Innovacion';
 import Tribunal from './sections/Tribunal';
 import Abogacia from './sections/Abogacia';
 import Contacto from './sections/Contacto';
@@ -92,3 +91,4 @@ export default function App() {
     </div>
   );
 }
+
