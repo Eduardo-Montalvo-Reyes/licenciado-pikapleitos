@@ -1,42 +1,59 @@
 import React from 'react';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Map, Smile, BookOpen, Activity, Target } from 'lucide-react';
+
+// Imports corregidos: ruta relativa desde Bachillerato.tsx hacia la subcarpeta Bachillerato/
 import Historia from './Bachillerato/Historia';
 import Etica from './Bachillerato/Etica';
 import Taller from './Bachillerato/Taller';
 import Actividades from './Bachillerato/Actividades';
-import Proyecto from './Bachillerato/Proyecto';
+import Proyectos from './Bachillerato/Proyectos';  // ‚Üê plural, como en tu carpeta
 
-export default function Bachillerato({ subTab, setSubTab }) {
+interface BachilleratoProps {
+  subTab: string | null;
+  setSubTab: (tab: string | null) => void;
+}
+
+export default function Bachillerato({ subTab, setSubTab }: BachilleratoProps) {
   return (
     <div className="animate-fade-in space-y-10">
       {!subTab ? (
         <>
           <div className="text-center space-y-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold" style={{ color: '#d4a017' }}>DOCENCIA BACHILLERATO</h2>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold" style={{ color: '#d4a017' }}>
+              DOCENCIA BACHILLERATO
+            </h2>
             <div className="flex justify-center py-6">
               <div className="w-full max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden border-4 border-[#d4a017]/30">
-                <iframe className="w-full h-full" src="https://www.youtube.com/embed/_3VZPyppNW8" allowFullScreen></iframe>
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/_3VZPyppNW8"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
             <p className="max-w-4xl mx-auto font-light text-justify text-lg leading-relaxed">
-              Mi labor como docente en el nivel medio superior trasciende la simple instrucciÛn acadÈmica; se enfoca en la formaciÛn integral de ciudadanos con criterio y estructura. A lo largo de mi trayectoria, he rediseÒado los programas de …tica, Historia y Taller de Lectura para dotarlos de un rigor profesional que prepare al alumno para los desafÌos de la vida universitaria.
-              <br/><br/>
-              Sin embargo, considero que mi mayor logro y mi m·s alta carta de recomendaciÛn no reside en los documentos, sino en el testimonio de mis estudiantes. El reconocimiento de los alumnos, quienes al tÈrmino del curso han manifestado haber descubierto un genuino amor por materias que antes consideraban ·ridas, es la prueba definitiva de que la pasiÛn y el mÈtodo que imprimo en el aula logran transformar el conocimiento en una herramienta de vida.
+              Mi labor como docente en el nivel medio superior trasciende la simple instrucci√≥n acad√©mica; se enfoca en la formaci√≥n integral de ciudadanos con criterio y estructura. A lo largo de mi trayectoria, he redise√±ado los programas de √âtica, Historia y Taller de Lectura para dotarlos de un rigor profesional que prepare al alumno para los desaf√≠os de la vida universitaria.
+              <br /><br />
+              Sin embargo, considero que mi mayor logro y mi m√°s alta carta de recomendaci√≥n no reside en los documentos, sino en el testimonio de mis estudiantes. El reconocimiento de los alumnos, quienes al t√©rmino del curso han manifestado haber descubierto un genuino amor por materias que antes consideraban √°ridas, es la prueba definitiva de que la pasi√≥n y el m√©todo que imprimo en el aula logran transformar el conocimiento en una herramienta de vida.
             </p>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
             {[
-              { id: 'historia', label: 'HISTORIA', icon: <Map />, desc: 'DiseÒo tÈcnico-pedagÛgico de autorÌa propia. Corte comparativo que sit˙a el devenir nacional dentro de la narrativa universal.' },
-              { id: 'etica', label: '…TICA', icon: <Smile />, desc: 'DiseÒo tÈcnico-pedagÛgico de autorÌa propia. Centrado en la TeorÌa de la CalificaciÛn del Acto y la Phronesis aristotÈlica.' },
-              { id: 'taller', label: 'TALLER DE REDACCI”N', icon: <BookOpen />, desc: 'DiseÒo tÈcnico-pedagÛgico de autorÌa propia. Basado en la IngenierÌa del Pensamiento y gradaciÛn de objetividad.' },
-              { id: 'actividades', label: 'ACTIVIDADES DE REFUERZO', icon: <Activity />, desc: 'Actividades diseÒadas para que el alumno aplique el conocimiento del dÌa a dÌa en dilemas reales.' },
-              { id: 'proyecto', label: 'PROYECTO FINAL', icon: <Target />, desc: 'Documento que certifica la culminaciÛn del proceso de aprendizaje. Exige coherencia y linealidad absoluta.' },
+              { id: 'historia', label: 'HISTORIA', icon: <Map />, desc: 'Dise√±o t√©cnico-pedag√≥gico de autor√≠a propia. Corte comparativo que sit√∫a el devenir nacional dentro de la narrativa universal.' },
+              { id: 'etica', label: '√âTICA', icon: <Smile />, desc: 'Dise√±o t√©cnico-pedag√≥gico de autor√≠a propia. Centrado en la Teor√≠a de la Calificaci√≥n del Acto y la Phronesis aristot√©lica.' },
+              { id: 'taller', label: 'TALLER DE REDACCI√ìN', icon: <BookOpen />, desc: 'Dise√±o t√©cnico-pedag√≥gico de autor√≠a propia. Basado en la Ingenier√≠a del Pensamiento y gradaci√≥n de objetividad.' },
+              { id: 'actividades', label: 'ACTIVIDADES DE REFUERZO', icon: <Activity />, desc: 'Actividades dise√±adas para que el alumno aplique el conocimiento del d√≠a a d√≠a en dilemas reales.' },
+              { id: 'proyectos', label: 'PROYECTO FINAL', icon: <Target />, desc: 'Documento que certifica la culminaci√≥n del proceso de aprendizaje. Exige coherencia y linealidad absoluta.' },
             ].map((item) => (
               <div key={item.id} className="bg-[#1e293b] p-6 rounded-2xl border border-white/5 flex flex-col h-full hover:border-[#d4a017]/50 transition-all">
                 <div className="text-[#d4a017] mb-4">{item.icon}</div>
                 <h3 className="font-serif font-bold text-xl mb-3">{item.label}</h3>
                 <p className="text-xs font-light text-justify text-gray-400 mb-6">{item.desc}</p>
-                <button onClick={() => setSubTab(item.id)} className="w-full py-3 mt-auto bg-[#d4a017] text-black font-bold text-xs uppercase tracking-widest rounded-lg hover:bg-white transition-colors">
+                <button
+                  onClick={() => setSubTab(item.id)}
+                  className="w-full py-3 mt-auto bg-[#d4a017] text-black font-bold text-xs uppercase tracking-widest rounded-lg hover:bg-white transition-colors"
+                >
                   Explorar Materia
                 </button>
               </div>
@@ -45,7 +62,10 @@ export default function Bachillerato({ subTab, setSubTab }) {
         </>
       ) : (
         <div className="animate-fade-in">
-          <button onClick={() => setSubTab(null)} className="flex items-center gap-2 text-[#d4a017] uppercase text-xs font-bold mb-8 hover:text-white">
+          <button
+            onClick={() => setSubTab(null)}
+            className="flex items-center gap-2 text-[#d4a017] uppercase text-xs font-bold mb-8 hover:text-white"
+          >
             <ChevronLeft size={16} /> Volver a Bachillerato
           </button>
 
@@ -53,7 +73,7 @@ export default function Bachillerato({ subTab, setSubTab }) {
           {subTab === 'etica' && <Etica />}
           {subTab === 'taller' && <Taller />}
           {subTab === 'actividades' && <Actividades />}
-          {subTab === 'proyecto' && <Proyecto />}
+          {subTab === 'proyectos' && <Proyectos />}  {/* ‚Üê plural para coincidir con el archivo */}
         </div>
       )}
     </div>
