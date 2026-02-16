@@ -1,13 +1,14 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+
 // Importación de Secciones
 import Inicio from './sections/Inicio';
 import Filosofia from './sections/Filosofia';
 import Conoceme from './sections/Conoceme';
-import Innovacion from './sections/Innovacion';  // ← activada y en posición correcta
+import Bachillerato from './sections/Bachillerato';      // ← Import correcto, sin .tsx
+import Innovacion from './sections/Innovacion';
 import Tribunal from './sections/Tribunal';
-import Bachillerato from './sections/Bachillerato';
-import ApoyoJuridico from './sections/ApoyoJuridico';  // ← nueva, antes Abogacia
+import ApoyoJuridico from './sections/ApoyoJuridico';
 import Contacto from './sections/Contacto';
 
 export default function App() {
@@ -27,8 +28,8 @@ export default function App() {
     { id: 'innovacion', label: 'INNOVACION' },
     { id: 'tribunal', label: 'VISIÓN PRÁCTICA' },
     { id: 'bachillerato', label: 'BACHILLERATO' },
-    { id: 'apoyo-juridico', label: 'APOYO JURIDICO' },  // ← nuevo id y label
-    { id: 'contacto', label: 'CONTACTO' },              // ← última
+    { id: 'apoyo-juridico', label: 'APOYO JURIDICO' },
+    { id: 'contacto', label: 'CONTACTO' },
   ];
 
   const renderContent = () => {
@@ -39,7 +40,7 @@ export default function App() {
       case 'innovacion': return <Innovacion subTab={subTab} setSubTab={setSubTab} />;
       case 'tribunal': return <Tribunal setActiveTab={setActiveTab} />;
       case 'bachillerato': return <Bachillerato subTab={subTab} setSubTab={setSubTab} />;
-      case 'apoyo-juridico': return <ApoyoJuridico />;  // ← nueva
+      case 'apoyo-juridico': return <ApoyoJuridico />;
       case 'contacto': return <Contacto />;
       default: return <Inicio setActiveTab={setActiveTab} />;
     }
