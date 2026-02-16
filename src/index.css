@@ -1,0 +1,40 @@
+﻿/* Import de fuentes de Google Fonts: debe ser la PRIMERA línea */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+
+/* Directivas de Tailwind: ahora van DESPUÉS del @import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reseteo global */
+body {
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Clases personalizadas */
+.font-lora {
+  font-family: 'Lora', serif;
+}
+.font-merri {
+  font-family: 'Merriweather', serif;
+}
+.text-justify-custom {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Ajuste responsivo para móviles */
+@media (max-width: 640px) {
+  .text-justify-custom {
+    text-align: left;
+  }
+}
+
+/* Selección de texto personalizada */
+::selection {
+  background: #7f6000;
+  color: black;
+}
