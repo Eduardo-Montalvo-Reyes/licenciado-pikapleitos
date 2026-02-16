@@ -1,114 +1,139 @@
-﻿import React from 'react';
-import { ChevronLeft, RefreshCw, Book, ClipboardList, Brain, FileText, Target } from 'lucide-react';
+import React from 'react';
+import { ChevronLeft } from 'lucide-react';
 
-// Imports de TODAS las subpestañas (ya creadas)
-import ActualizacionTemario from './Innovacion/ActualizacionTemario';
-import TemarioTematico from './Innovacion/TemarioTematico';
-import GuionCatedra from './Innovacion/GuionCatedra';
-import ImplementacionEpistemologica from './Innovacion/ImplementacionEpistemologica';
-import GuiaPractica from './Innovacion/GuiaPractica';
-import ProyectoFinal from './Innovacion/ProyectoFinal';
+// Imports de subcomponentes (ajusta si tus nombres son diferentes)
+import CodigoNormativo from './Tribunal/CodigoNormativo';
+import ControlConvencionalidad from './Tribunal/ControlConvencionalidad';
+import GestionExpedientes from './Tribunal/GestionExpedientes';
+import MaterialVisual from './Tribunal/MaterialVisual';
+import PracticaJuridica from './Tribunal/PracticaJuridica';
+import PraxisSecretarial from './Tribunal/PraxisSecretarial';
 
-export default function Innovacion({ subTab, setSubTab }) {
+interface TribunalProps {
+  setActiveTab: (tab: string) => void;
+  subTab?: string | null; // opcional
+  setSubTab?: (tab: string | null) => void; // opcional
+}
+
+export default function Tribunal({ setActiveTab, subTab, setSubTab }: TribunalProps) {
   return (
-    <div className="animate-fade-in space-y-10">
-      {!subTab ? (
+    <div className="animate-fade-in space-y-12">
+      {subTab ? (
+        // Vista de subpestañas
+        <div className="animate-fade-in">
+          <button
+            onClick={() => setSubTab?.(null)}
+            className="flex items-center gap-2 text-[#d4a017] uppercase text-xs font-bold mb-8 hover:text-white"
+          >
+            <ChevronLeft size={16} /> Volver a Tribunal Escolar
+          </button>
+
+          {subTab === 'codigo-normativo' && <CodigoNormativo />}
+          {subTab === 'control-convencionalidad' && <ControlConvencionalidad />}
+          {subTab === 'gestion-expedientes' && <GestionExpedientes />}
+          {subTab === 'material-visual' && <MaterialVisual />}
+          {subTab === 'practica-juridica' && <PracticaJuridica />}
+          {subTab === 'praxis-secretarial' && <PraxisSecretarial />}
+        </div>
+      ) : (
+        // Vista principal con encabezado y cards
         <>
-          {/* Vista principal */}
-          <div className="text-center space-y-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold" style={{ color: '#d4a017' }}>
-              INNOVANDO LA ENSEÑANZA (Material pedagógico)
-            </h2>
-            <div className="flex justify-center py-6">
-              <div className="w-full max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden border-4 border-[#d4a017]/30 shadow-2xl">
+          {/* Encabezado con Video */}
+          <div className="flex flex-col lg:flex-row gap-12 items-center bg-[#1e293b] p-8 md:p-12 rounded-[3rem] border border-[#d4a017]/20 shadow-2xl">
+            <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+              <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight" style={{ color: '#d4a017' }}>
+                TRIBUNAL <br/> ESCOLAR
+              </h2>
+              <div className="space-y-4 text-gray-100 text-sm md:text-base font-light leading-relaxed text-justify">
+                <p>
+                  La educación no es la simple transmisión de datos, sino la arquitectura del pensamiento crítico. Mi labor docente se ha centrado en transformar el aula en un laboratorio de realidad, donde el alumno de Licenciatura practica como profesional y el alumno de Bachillerato construye su criterio como ciudadano. Este portafolio es la prueba tangible de una metodología basada en el rigor, la actualización constante y la pasión por la excelencia.
+                </p>
+                <p>
+                  En esta sección se evidencia la transformación de la teoría jurídica en praxis real. Para ello, diseñé expedientes de juicios simulados, completos y personalizados. Los formatos fueron elaborados con apego a la realidad, de modo que los alumnos no estudian el proceso; lo viven desde la posición de las partes y del órgano jurisdiccional.
+                </p>
+                <p>
+                  El objetivo es que el estudiante se forme como Licenciado en Derecho enfrentando en clase la misma dinámica que tendría como profesionista, desarrollando competencias de análisis, argumentación y resolución en un entorno académico que reproduce la práctica jurídica.
+                </p>
+                <p>
+                  Creación de un ecosistema jurídico autónomo en el aula: se establece un marco de legalidad propio que obliga al alumno a la profesionalización inmediata mediante el uso de tecnología y técnica legislativa.
+                </p>
+              </div>
+            </div>
+            <div className="w-full lg:w-1/2 flex justify-center">
+              <div className="relative aspect-[9/16] w-full max-w-[280px] rounded-3xl overflow-hidden border-4 border-[#d4a017]/30 shadow-2xl">
                 <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/IAq_sFBFboY"
-                  title="Innovando la Enseñanza"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/VleKtRNId0o"
+                  title="Tribunal Escolar"
                   allowFullScreen
                 ></iframe>
               </div>
             </div>
-            <p className="max-w-4xl mx-auto font-light text-justify text-lg leading-relaxed">
-              Experto en el diseño e implementación de metodologías pedagógicas de alto impacto que vinculan la praxis jurídica real con la formación académica. Me he vuelto especialista en la formación técnica de profesionales del Derecho y nivel Bachillerato gracias al dominio de la Epistemología y la Ética como materias base de formación en la gestión de contenidos humanísticos y sociales con un enfoque crítico y pragmático. Superación de los planes oficiales mediante la redacción y elaboración de actividades reales que se viven en el día a día en el aula, profundización y explicación de temas que común mente se omiten. <i>Entiendo la docencia como una extensión de la justicia: formar ciudadanos que no solo posean el saber técnico, sino el criterio para aplicarlo con ética. Mi compromiso es con la excelencia académica y la formación integral, utilizando la tecnología como un puente y nunca como un reemplazo del juicio humano.</i>
-            </p>
           </div>
 
-          {/* Grid de las 6 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
+          {/* Grid de Apartados */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8">
             {[
               {
-                id: 'actualizacion-temario',
-                label: 'Actualización de Temario',
-                icon: <RefreshCw />,
-                desc: 'Actualización y robustecimiento de programas oficiales mediante la integración de doctrina contemporánea y casos de vanguardia.'
+                id: 'practica-juridica',
+                title: 'PRÁCTICA JURÍDICA',
+                desc: 'Simulación integral desde el escrito inicial de demanda hasta la sentencia definitiva. Incluye la gestión de audiencias y acuerdos.',
+                icon: <Gavel />
               },
               {
-                id: 'temario-tematico',
-                label: 'Temario Temático',
-                icon: <Book />,
-                desc: 'Estructura conceptual detallada por sesión: definición de conceptos clave, objetivos de aprendizaje, lecturas obligatorias y actividades específicas.'
+                id: 'control-convencionalidad',
+                title: 'CONTROL DE CONVENCIONALIDAD Y AMPARO',
+                desc: 'Ejercicio de impugnación de calificaciones mediante sentencias interlocutorias, obligando al dominio del principio de definitividad.',
+                icon: <Scale />
               },
               {
-                id: 'guion-catedra',
-                label: 'Guión de Cátedra',
-                icon: <ClipboardList />,
-                desc: 'Diseño de ejecución pedagógica: crono-grama minuto a minuto de la clase, técnica de abordaje de conceptos y momentos de transición práctica.'
+                id: 'praxis-secretarial',
+                title: 'PRAXIS SECRETARIAL',
+                desc: 'Compendio de promociones, resoluciones y acuerdos personalizados para el alumno en su rol y formación como abogado dentro del aula.',
+                icon: <FileSignature />
               },
               {
-                id: 'implementacion-epistemologica',
-                label: 'Implementacion Epistemologíca',
-                icon: <Brain />,
-                desc: 'Diseño de un plan de trabajo intensivo que garantiza el dominio de los 4 Pilares Epistemológicos (Naturaleza, Origen, Validez y Límites).'
+                id: 'codigo-normativo',
+                title: 'CÓDIGO NORMATIVO ESTUDIANTIL',
+                desc: 'Cuerpo legal que rige el aula. Establece figuras de derecho real: Oficialía de Partes, Sistema de Folios, términos perentorios y procesos de reforma legislativa.',
+                icon: <Book />
               },
               {
-                id: 'guia-practica',
-                label: 'Guía de Practica (ejemplo)',
-                icon: <FileText />,
-                desc: 'Instrumento de autoría propia que utiliza la experiencia profesional y casuística real como método de enseñanza.'
+                id: 'material-visual',
+                title: 'MATERIAL VISUAL',
+                desc: 'Instrucción oral estratégica donde se desglosa el escrito inicial de demanda y la fundamentación de pretensiones bajo rigor legislativo.',
+                icon: <PlayCircle />
               },
               {
-                id: 'proyecto-final',
-                label: 'Proyecto Final del Curso (ejemplo)',
-                icon: <Target />,
-                desc: 'Este proyecto representa la culminación del proceso de maduración intelectual del estudiante.'
-              },
-            ].map((item) => (
+                id: 'gestion-expedientes',
+                title: 'SISTEMA DE GESTIÓN DE EXPEDIENTES',
+                desc: 'Metodología de control documental: nomenclatura de folios personalizada y protocolos de recepción que simulan la realidad de los juzgados.',
+                icon: <FolderKanban />
+              }
+            ].map((item, index) => (
               <div
-                key={item.id}
-                className="bg-[#1e293b] p-6 rounded-2xl border border-white/5 flex flex-col h-full hover:border-[#d4a017]/50 transition-all"
+                key={index}
+                className="bg-[#1e293b] p-8 rounded-2xl border border-white/5 flex flex-col h-full hover:border-[#d4a017]/50 transition-all group"
               >
-                <div className="text-[#d4a017] mb-4">{item.icon}</div>
-                <h3 className="font-serif font-bold text-xl mb-3">{item.label}</h3>
-                <p className="text-xs font-light text-justify text-gray-400 mb-6">{item.desc}</p>
+                <div className="text-[#d4a017] mb-5 transform group-hover:scale-110 transition-transform">
+                  {React.cloneElement(item.icon, { size: 32 })}
+                </div>
+                <h3 className="font-serif font-bold text-lg mb-4 leading-tight text-white uppercase tracking-wider">
+                  {item.title}
+                </h3>
+                <p className="text-xs font-light text-justify text-gray-400 mb-8 leading-relaxed">
+                  {item.desc}
+                </p>
                 <button
-                  onClick={() => setSubTab(item.id)}
-                  className="w-full py-3 mt-auto bg-[#d4a017] text-black font-bold text-xs uppercase tracking-widest rounded-lg hover:bg-white transition-colors"
+                  onClick={() => setSubTab?.(item.id)}
+                  className="w-full py-3 mt-auto bg-transparent border border-[#d4a017] text-[#d4a017] font-bold text-[10px] uppercase tracking-[0.2em] rounded-lg hover:bg-[#d4a017] hover:text-black transition-all"
                 >
-                  CONOCER MÁS
+                  Consultar Sección
                 </button>
               </div>
             ))}
           </div>
         </>
-      ) : (
-        {/* Vista de subpestañas */}
-        <div className="animate-fade-in">
-          <button
-            onClick={() => setSubTab(null)}
-            className="flex items-center gap-2 text-[#d4a017] uppercase text-xs font-bold mb-8 hover:text-white"
-          >
-            <ChevronLeft size={16} /> Volver a Innovación
-          </button>
-
-          {subTab === 'actualizacion-temario' && <ActualizacionTemario />}
-          {subTab === 'temario-tematico' && <TemarioTematico />}
-          {subTab === 'guion-catedra' && <GuionCatedra />}
-          {subTab === 'implementacion-epistemologica' && <ImplementacionEpistemologica />}
-          {subTab === 'guia-practica' && <GuiaPractica />}
-          {subTab === 'proyecto-final' && <ProyectoFinal />}
-        </div>
       )}
     </div>
   );
