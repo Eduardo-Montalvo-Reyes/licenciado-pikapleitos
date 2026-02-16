@@ -1,0 +1,38 @@
+/* Reset básico y estilos globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Merriweather', serif;
+  background-color: #374151;
+  color: #f9fafb;
+}
+
+/* Tus clases personalizadas (si las tienes) */
+.font-lora {
+  font-family: 'Lora', serif;
+}
+.font-merri {
+  font-family: 'Merriweather', serif;
+}
+.text-justify-custom {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+@media (max-width: 640px) {
+  .text-justify-custom {
+    text-align: left;
+  }
+}
+
+::selection {
+  background: #7f6000;
+  color: black;
+}
+
+/* Fuentes de Google (ya las cargas en App.tsx, pero puedes dejar aquí si quieres) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
